@@ -43,19 +43,19 @@ semantics sem1.
 sem1(sem:S, S) if true.
 
 % Define your Lexical items
-yi ---> (num, sem:(n_sem, count:one))
-liang ---> (num, sem:(n_sem, count:two))
-san ---> (num, sem:(n_sem, count:three))
-laoshu ---> (n, agr:zhi, sem:mouse)
-yang ---> (n, agr:tou, sem:sheep)
-yuyanxuejia ---> (n, agr:ge, sem:linguist)
-yuyanxuejia ---> (n, agr:wei, sem:linguist)
-kanjian ---> (v, sem:see)
-zhui ---> (v, sem:chase)
-ge ---> ge
-wei ---> wei
-zhi ---> zhi
-tou ---> tou
+yi ---> (num, sem:(n_sem, count:one)).
+liang ---> (num, sem:(n_sem, count:two)).
+san ---> (num, sem:(n_sem, count:three)).
+laoshu ---> (n, agr:zhi, sem:mouse).
+yang ---> (n, agr:tou, sem:sheep).
+yuyanxuejia ---> (n, agr:ge, sem:linguist).
+yuyanxuejia ---> (n, agr:wei, sem:linguist).
+kanjian ---> (v, sem:see).
+zhui ---> (v, sem:chase).
+ge ---> ge.
+wei ---> wei.
+zhi ---> zhi.
+tou ---> tou.
 
 % Define your Rules
 snpvp rule
@@ -64,11 +64,11 @@ snpvp rule
 
 vpvnp rule
 (vp, sem:(v_sem, obj:NP), subcat:[]) ===> cat> (v, sem:(v_sem, obj:NP), subcat:[]),
-                                cat> (np, NP).
+                                          cat> (np, NP).
 
 npclpn rule
 (np, agr:cl:Cl_type, sem:count:Count) ===> cat> (clp, agr:cl:Cl_type, sem:count:Count),
-                                           cat> (n, agr:cl:Cl_type)
+                                           cat> (n, agr:cl:Cl_type).
 
 clpnumcl rule
 (clp, agr:cl:Cl_type, sem:count:Count) ===> cat> (num, sem:count:Count),
