@@ -46,10 +46,10 @@ sem1(sem:S, S) if true.
 yi ---> (num, sem:(n_sem, count:one)).
 liang ---> (num, sem:(n_sem, count:two)).
 san ---> (num, sem:(n_sem, count:three)).
-laoshu ---> (n, agr:zhi, sem:mouse).
-yang ---> (n, agr:tou, sem:sheep).
-yuyanxuejia ---> (n, agr:ge, sem:linguist).
-yuyanxuejia ---> (n, agr:wei, sem:linguist).
+laoshu ---> (n, agr:cl:zhi, sem:mouse).
+yang ---> (n, agr:cl:tou, sem:sheep).
+yuyanxuejia ---> (n, agr:cl:ge, sem:linguist).
+yuyanxuejia ---> (n, agr:cl:wei, sem:linguist).
 kanjian ---> (v, sem:see).
 zhui ---> (v, sem:chase).
 ge ---> ge.
