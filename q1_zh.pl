@@ -62,8 +62,12 @@ snpvp rule
 (s, sem:(V_sem, subj:NP, obj:NP_o)) ===> cat> (np, NP),
                                          cat> (vp, sem:(V_sem, obj:NP_o)).
 
+%vpvnp rule
+%(vp, sem:(V_sem, obj:NP)) ===> cat> (v, sem:V_sem),
+%                               cat> (np, NP).
+
 vpvnp rule
-(vp, sem:(V_sem, obj:NP)) ===> cat> (v, sem:V_sem),
+(vp, sem:(v_sem, obj:NP)) ===> cat> v,
                                cat> (np, NP).
 
 npclpn rule
