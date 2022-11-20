@@ -54,27 +54,24 @@ sheep ---> (n, agr:(person:third, noun_count:singular), sem:sheep).
 sheep ---> (n, agr:(person:third, noun_count:plural), sem:sheep).
 linguist ---> (n, agr:(person:third, noun_count:singular), sem:linguist).
 linguists ---> (n, agr:(person:third, noun_count:plural), sem:linguist).
-see ---> (v, sem:see, agr:person:first). % Won't need the first person
-see ---> (v, sem:see, agr:person:second). % Won't need the second person
-see ---> (v, sem:see, agr:noun_count:plural).
-sees ---> (v, sem:see, agr:person:third).
-saw ---> (v, sem:see).
-chase ---> (v, sem:chase, agr:person:first). % Won't need the first person
-chase ---> (v, sem:chase, agr:person:second). % Won't need the second person
-chase ---> (v, sem:chase, agr:noun_count:plural).
-chases ---> (v, sem:chase, agr:person:third).
-chased ---> (v, sem:chase).
+%see ---> (v, sem:see, agr:person:first).  %Won't need the first person
+%see ---> (v, sem:see, agr:person:second). %Won't need the second person
+see ---> (v, sem:see, agr:(person:third, noun_count:plural)).
+sees ---> (v, sem:see, agr:(person:third, noun_count:singular)).
+saw ---> (v, sem:see, agr:(person:third, noun_count:plural)).
+saw ---> (v, sem:see, agr:(person:third, noun_count:singular)).
+%chase ---> (v, sem:chase, agr:person:first). % Won't need the first person
+%chase ---> (v, sem:chase, agr:person:second). % Won't need the second person
+chase ---> (v, sem:chase, agr:(person:third, noun_count:plural)).
+chases ---> (v, sem:chase, agr:(person:third, noun_count:singular)).
+chased ---> (v, sem:chase, agr:(person:third, noun_count:plural)).
+chased ---> (v, sem:chase, agr:(person:third, noun_count:singular)).
 
 % Define your Rules
-snpvp1 rule
+snpvp rule
 (s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) 
-    ===> cat> (np, sem:N_sem, agr:(person:Person, noun_count:Noun_c)),
-         cat> (vp, sem:(V_sem, obj:N_sem_o), agr:person:Person).
-
-snpvp2 rule
-(s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) 
-    ===> cat> (np, sem:N_sem, agr:(person:Person, noun_count:Noun_c)),
-         cat> (vp, sem:(V_sem, obj:N_sem_o), agr:noun_count:Noun_c).
+    ===> cat> (np, sem:N_sem, agr:Agr),
+         cat> (vp, sem:(V_sem, obj:N_sem_o), agr:Agr).
 
 vpvnp rule
 (vp, agr:Agr, sem:(V_sem, obj:N_sem)) 
