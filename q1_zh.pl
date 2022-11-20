@@ -59,14 +59,12 @@ tou ---> tou.
 
 % Define your Rules
 snpvp rule
-(s, sem:S) ===> cat> (np, NP),
-                cat> (vp, sem:(V_sem, obj:NP_o)),
-                goal> sem1(S, (V_sem, subj:NP, obj:NP_o)).
+(s, sem:(V_sem, subj:NP, obj:NP_o)) ===> cat> (np, NP),
+                                         cat> (vp, sem:(V_sem, obj:NP_o)).
 
 vpvnp rule
-(vp, VP) ===> cat> (v, sem:V_sem),
-              cat> (np, NP),
-              goal> sem1(VP,(V_sem, obj:NP)).
+(vp, sem:(V_sem, obj:NP)) ===> cat> (v, sem:V_sem),
+                               cat> (np, NP).
 
 npclpn rule
 (np, agr:cl:Cl_type, sem:count:Count) ===> cat> (clp, agr:cl:Cl_type, sem:count:Count),
