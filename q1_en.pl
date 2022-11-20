@@ -66,6 +66,20 @@ chases ---> (v, sem:chase, agr:person:third).
 chased ---> (v, sem:chase).
 
 % Define your Rules
+snpvp1 rule
+(s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) 
+    ===> cat> (np, sem:N_sem, agr:(person:Person, noun_count:Noun_c)),
+         cat> (vp, sem:(V_sem, obj:N_sem_o), agr:person:Person).
+
+snpvp2 rule
+(s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) 
+    ===> cat> (np, sem:N_sem, agr:(person:Person, noun_count:Noun_c)),
+         cat> (vp, sem:(V_sem, obj:N_sem_o), agr:noun_count:Noun_c).
+
+vpvnp rule
+(vp, agr:Agr, sem:(V_sem, obj:N_sem)) 
+    ===> cat> (v, agr:Agr, sem:V_sem),
+         cat> (np, sem:N_sem).
 
 npdetn rule
 (np, agr:(person:Person, noun_count:Noun_c), sem:(N_sem, count:Count))
