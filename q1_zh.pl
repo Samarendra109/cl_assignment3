@@ -71,7 +71,7 @@ snpvp rule
 %                               cat> (np, NP).
 
 vpvnp rule
-(vp, sem:VP_sem) ===> cat> (v, sem:V_sem),
+(vp, VP_sem) ===> cat> (v, sem:V_sem),
                       cat> (np, NP),
                       goal> sem1(VP_sem, (V_sem, obj:NP)).
 
