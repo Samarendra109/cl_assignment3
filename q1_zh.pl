@@ -76,8 +76,8 @@ vpvnp rule
                       goal> sem1(VP_sem, (V_sem, obj:NP)).
 
 vpvn rule
-vp ===> cat> v,
-        cat> n.
+(vp, sem:obj:NP) ===> cat> v,
+                      cat> (np, NP).
 
 npclpn rule
 (np, agr:cl:Cl_type, sem:count:Count) ===> cat> (clp, agr:cl:Cl_type, sem:count:Count),
