@@ -80,8 +80,8 @@ vpvn rule
                       cat> (np, NP).
 
 npclpn rule
-(np, agr:cl:Cl_type, sem:count:Count) ===> cat> (clp, agr:cl:Cl_type, sem:count:Count),
-                                           cat> (n, agr:cl:Cl_type).
+(np, agr:cl:Cl_type, sem:(N_sem, count:Count)) ===> cat> (clp, agr:cl:Cl_type, sem:count:Count),
+                                           cat> (n, agr:cl:Cl_type, sem:N_sem).
 
 clpnumcl rule
 (clp, agr:cl:Cl_type, sem:count:Count) ===> cat> (num, sem:count:Count),
