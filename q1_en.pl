@@ -29,7 +29,10 @@ bot sub [cat, sem, agr, list].
         verbal sub [v, vp, s] intro [sem:v_sem, subcat:list].
 
     % Define your agreement
-    agr intro [].
+    agr intro [person:pers, noun_count:noun_c].
+
+    pers sub [first,second,third].
+    noun_c sub [singular,plural].
 
     count sub [one, two, three].
 
@@ -41,21 +44,35 @@ semantics sem1.
 sem1(sem:S, S) if true.
 
 % Define your Lexical entries
-a --->  det
-one ---> num
-two ---> num
-three ---> num
-mouse ---> n
-mice ---> n
-sheep ---> n
-sheeep ---> n
-linguist ---> n
-linguists ---> n
-see ---> v
-sees ---> v
-saw ---> v
-chase ---> v
-chases ---> v
-chased ---> v
+a ---> (det, agr:noun_count:singular, sem:count:one).
+one ---> (num, agr:noun_count:singular, sem:count:one).
+two ---> (num, agr:noun_count:plural, sem:count:two).
+three ---> (num, agr:noun_count:plural, sem:count:three).
+mouse ---> (n, agr:(person:third, noun_count:singular), sem:mouse).
+mice ---> (n, agr:(person:third, noun_count:plural), sem:mouse).
+sheep ---> (n, agr:(person:third, noun_count:singular), sem:sheep).
+sheep ---> (n, agr:(person:third, noun_count:plural), sem:sheep).
+linguist ---> (n, agr:(person:third, noun_count:singular), sem:linguist).
+linguists ---> (n, agr:(person:third, noun_count:plural), sem:linguist).
+see ---> (v, sem:see, agr:person:first). % Won't need the first person
+see ---> (v, sem:see, agr:person:second). % Won't need the second person
+see ---> (v, sem:see, agr:noun_count:plural).
+sees ---> (v, sem:see, agr:person:third).
+saw ---> (v, sem:see).
+chase ---> (v, sem:chase, agr:person:first). % Won't need the first person
+chase ---> (v, sem:chase, agr:person:second). % Won't need the second person
+chase ---> (v, sem:chase, agr:noun_count:plural).
+chases ---> (v, sem:chase, agr:person:third).
+chased ---> (v, sem:chase).
 
 % Define your Rules
+
+npdetn rule
+(np, agr:(person:Person, noun_count:Noun_c), sem:(N_sem, count:Count))
+    ===> cat> (det, agr:noun_count:Noun_c, sem:count:Count),
+         cat> (n, agr:(person:Person, noun_count:Noun_c), sem:N_sem).
+
+npnumn rule
+(np, agr:(person:Person, noun_count:Noun_c), sem:(N_sem, count:Count)) 
+    ===> cat> (num, agr:noun_count:Noun_c, sem:count:Count),
+         cat> (n, agr:(person:Person, noun_count:Noun_c), sem:N_sem).

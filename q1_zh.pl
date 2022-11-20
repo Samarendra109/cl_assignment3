@@ -62,19 +62,6 @@ snpvp rule
 (s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) ===> cat> (np, sem:N_sem),
                                                cat> (vp, sem:(V_sem, obj:N_sem_o)).
 
-%vpvnp rule
-%(vp, sem:(V_sem, obj:NP)) ===> cat> (v, sem:V_sem),
-%                               cat> (np, NP).
-
-%vpvnp rule
-%(vp, sem:(V_sem, obj:NP)) ===> cat> (v, sem:V_sem),
-%                               cat> (np, NP).
-
-%vpvnp rule
-%(vp, VP_sem) ===> cat> (v, sem:V_sem),
-%                      cat> (np, NP),
-%                      goal> sem1(VP_sem, (V_sem, obj:NP)).
-
 vpvnp rule
 (vp, sem:(V_sem, obj:N_sem)) ===> cat> (v, sem:V_sem),
                                   cat> (np, sem:N_sem).
