@@ -27,8 +27,8 @@ translate(Ws) :-
 translate_q1(Ws) :-
     (file_exists('.translate_sent.sh') -> delete_file('.translate_sent.sh'); true),
     tell('.translate_sent.sh'),
-    (lan(en) -> write('trale -fsg -c q1_zh.pl -e "ale_flag(another,_,inf),translate_gen(zh,('); true),
-    (lan(zh) -> write('trale -fsg -c q1_en.pl -e "ale_flag(another,_,inf),translate_gen(en,('); true),
+    (lan(en) -> write('/u/csc485h/fall/pub/trale/trale -fsg -c q1_zh.pl -e "ale_flag(another,_,inf),translate_gen(zh,('); true),
+    (lan(zh) -> write('/u/csc485h/fall/pub/trale/trale -fsg -c q1_en.pl -e "ale_flag(another,_,inf),translate_gen(en,('); true),
     \+ \+ (rec(Ws, FS, Res),
         my_pp_fs_res_name_only(FS, Res, 0, 0),
         write(',sem:'),
@@ -52,8 +52,8 @@ translate_q2(Ws) :-
 present_translation(FS, Res) :-
     (file_exists('.translate_sent.sh') -> delete_file('.translate_sent.sh');true),
     tell('.translate_sent.sh'),
-    (lan(en) -> write('trale -fsg -c q2_zh.pl -e "ale_flag(another,_,inf),translate_gen(zh,('); true),
-    (lan(zh) -> write('trale -fsg -c q2_en.pl -e "ale_flag(another,_,inf),translate_gen(en,('); true),
+    (lan(en) -> write('/u/csc485h/fall/pub/trale/trale -fsg -c q2_zh.pl -e "ale_flag(another,_,inf),translate_gen(zh,('); true),
+    (lan(zh) -> write('/u/csc485h/fall/pub/trale/trale -fsg -c q2_en.pl -e "ale_flag(another,_,inf),translate_gen(en,('); true),
     (
         my_pp_fs_res_name_only(FS, Res, 0, 0),
         write(',sem:'),
