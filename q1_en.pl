@@ -71,19 +71,19 @@ chased ---> (v, sem:chase, agr:(person:third, noun_count:singular)).
 snpvp rule
 (s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) 
     ===> cat> (np, sem:N_sem, agr:Agr),
-         cat> (vp, sem:(V_sem, obj:N_sem_o), agr:Agr).
+         sem_head> (vp, sem:(V_sem, obj:N_sem_o), agr:Agr).
 
 vpvnp rule
 (vp, agr:Agr, sem:(V_sem, obj:N_sem)) 
-    ===> cat> (v, agr:Agr, sem:V_sem),
+    ===> sem_head> (v, agr:Agr, sem:V_sem),
          cat> (np, sem:N_sem).
 
 npdetn rule
 (np, agr:(person:Person, noun_count:Noun_c), sem:(N_sem, count:Count))
     ===> cat> (det, agr:noun_count:Noun_c, sem:count:Count),
-         cat> (n, agr:(person:Person, noun_count:Noun_c), sem:N_sem).
+         sem_head> (n, agr:(person:Person, noun_count:Noun_c), sem:N_sem).
 
 npnumn rule
 (np, agr:(person:Person, noun_count:Noun_c), sem:(N_sem, count:Count)) 
     ===> cat> (num, agr:noun_count:Noun_c, sem:count:Count),
-         cat> (n, agr:(person:Person, noun_count:Noun_c), sem:N_sem).
+         sem_head> (n, agr:(person:Person, noun_count:Noun_c), sem:N_sem).

@@ -48,30 +48,31 @@ liang ---> (num, sem:(n_sem, count:two)).
 san ---> (num, sem:(n_sem, count:three)).
 laoshu ---> (n, agr:cl:zhi, sem:mouse).
 yang ---> (n, agr:cl:tou, sem:sheep).
+yang ---> (n, agr:cl:zhi, sem:sheep).
 yuyanxuejia ---> (n, agr:cl:ge, sem:linguist).
 yuyanxuejia ---> (n, agr:cl:wei, sem:linguist).
 kanjian ---> (v, sem:see).
 zhui ---> (v, sem:chase).
-ge ---> ge.
-wei ---> wei.
-zhi ---> zhi.
-tou ---> tou.
+ge ---> (cl, agr:cl:ge).
+wei ---> (cl, agr:cl:wei).
+zhi ---> (cl, agr:cl:zhi).
+tou ---> (cl, agr:cl:tou).
 
 % Define your Rules
 snpvp rule
 (s, sem:(V_sem, subj:N_sem, obj:N_sem_o)) ===> cat> (np, sem:N_sem),
-                                               cat> (vp, sem:(V_sem, obj:N_sem_o)).
+                                               sem_head> (vp, sem:(V_sem, obj:N_sem_o)).
 
 vpvnp rule
-(vp, sem:(V_sem, obj:N_sem)) ===> cat> (v, sem:V_sem),
+(vp, sem:(V_sem, obj:N_sem)) ===> sem_head> (v, sem:V_sem),
                                   cat> (np, sem:N_sem).
 
 npclpn rule
 (np, agr:cl:Cl_type, sem:(N_sem, count:Count)) ===> cat> (clp, agr:cl:Cl_type, sem:count:Count),
-                                           cat> (n, agr:cl:Cl_type, sem:N_sem).
+                                                    sem_head> (n, agr:cl:Cl_type, sem:N_sem).
 
 clpnumcl rule
 (clp, agr:cl:Cl_type, sem:count:Count) ===> cat> (num, sem:count:Count),
-                                            cat> (cl_types, Cl_type).
+                                            sem_head> (cl, agr:cl:Cl_type).
 
 
