@@ -71,7 +71,7 @@ speaks ---> (v,
 
 % Phrase structure rules (incomplete)
 npforall1 rule
-    (np) ===>
+    (np, logic:(forall, bind:(qvar, X))) ===>
     cat> (q, logic:forall),
     sem_head> (n, logic:f:X_sem).
 
