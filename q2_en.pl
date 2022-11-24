@@ -70,18 +70,13 @@ speaks ---> (v,
     sem:(speak, Speak)).
 
 % Phrase structure rules (incomplete)
-np rule
-    (np) ===>
-    cat> (q),
-    sem_head> (n).
-
 npforall rule
-    (np, @forall(X, X_sem, P)) ===>
+    (np, @forall(X, @apply(X_sem, [X]), P)) ===>
     cat> (q, logic:forall),
     sem_head> (X, n, logic:f:X_sem).
 
 npexits rule
-    (np, @exists(X, X_sem, P)) ===>
+    (np, @exists(X, @apply(X_sem, [X]), P)) ===>
     cat> (q, logic:exists),
     sem_head> (X, n, logic:f:X_sem).
 
