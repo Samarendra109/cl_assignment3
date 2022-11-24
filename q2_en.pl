@@ -64,7 +64,7 @@ hacker ---> (n,
     sem:(hacker, Hacker)).
 
 speaks ---> (v,
-    logic:(app, Speak),
+    logic:(app, f:Speak),
     % qstore:[],
     subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
@@ -76,7 +76,7 @@ npforall rule
     sem_head> (X, n, logic:f:X_sem).
 
 npexits rule
-    (np, @exits(X, X_sem, P)) ===>
+    (np, @exists(X, X_sem, P)) ===>
     cat> (q, logic:exists),
     sem_head> (X, n, logic:f:X_sem).
 
