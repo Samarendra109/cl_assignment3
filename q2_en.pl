@@ -70,6 +70,11 @@ speaks ---> (v,
     sem:(speak, Speak)).
 
 % Phrase structure rules (incomplete)
+npforall2 rule
+    (np, logic:(app, f:X_sem, args:[(qvar, X)])) ===>
+    cat> (q, logic:forall),
+    sem_head> (n, logic:f:X_sem).
+
 npforall1 rule
     (np, logic:@apply(X_sem, [(qvar, X)])) ===>
     cat> (q, logic:forall),
