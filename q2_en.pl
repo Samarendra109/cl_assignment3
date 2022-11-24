@@ -43,10 +43,10 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
     qs intro [l:logic, x:logic].
 
 % Lexical entries (incomplete)
-every ---> (
-    logic:forall,
+every ---> (q,
+    logic:forall
     % qstore:[]
-    q).
+    ).
 
 a ---> (
     logic:exists,
