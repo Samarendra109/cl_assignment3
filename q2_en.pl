@@ -44,46 +44,53 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
 
 % Lexical entries (incomplete)
 every ---> (
-    % logic:none,
+    logic:forall,
     % qstore:[]
     q).
 
 a ---> (
-    % logic:none,
+    logic:exists,
     % qstore:[]
     q).
 
 language ---> (n,
-    % logic:none,
+    logic:(app, f:Language),
     % qstore:[],
     sem:(language, Language)).
 
 hacker ---> (n,
-    % logic:none,
+    logic:(app, f:Hacker),
     % qstore:[],
     sem:(hacker, Hacker)).
 
 speaks ---> (v,
-    % logic:none,
+    logic:(app, Speak),
     % qstore:[],
     subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
 
 % Phrase structure rules (incomplete)
-np rule
-    (np) ===>
-    cat> (q),
-    sem_head> (n).
+npforall rule
+    (np, @forall(X, X_sem, P)) ===>
+    cat> (q, logic:forall),
+    sem_head> (X, n, logic:f:X_sem).
+
+npexits rule
+    (np, @exits(X, X_sem, P)) ===>
+    cat> (q, logic:exists),
+    sem_head> (X, n, logic:f:X_sem).
 
 vp rule
-    (vp) ===>
-    sem_head> (v),
-    cat> (np).
+    (vp, logic:LF) ===>
+    sem_head> (v, logic:P),
+    cat> (np, logic:LF),
+    goal> beta_normalize(LF,P).
 
 s rule
-    (s) ===>
-    cat> (np),
-    sem_head> (vp).
+    (s, logic:LF) ===>
+    cat> (np, logic:LF),
+    sem_head> (vp, logic:P),
+    goal> beta_normalize(LF,P).
 
 s_gap rule
     (s) ===>
