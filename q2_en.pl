@@ -71,12 +71,12 @@ speaks ---> (v,
 
 % Phrase structure rules (incomplete)
 npforall rule
-    (np, @forall(X, @apply(X_sem, [X]), (logic, P))) ===>
+    (np, logic:@forall(X, @apply(X_sem, [X]), (logic, P))) ===>
     cat> (q, logic:forall),
     sem_head> (X, n, logic:f:X_sem).
 
 npexists rule
-    (np, @exists(X, @apply(X_sem, [X]), (logic, P))) ===>
+    (np, logic:@exists(X, @apply(X_sem, [X]), (logic, P))) ===>
     cat> (q, logic:exists),
     sem_head> (X, n, logic:f:X_sem).
 
