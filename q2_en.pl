@@ -76,17 +76,17 @@ npforall2 rule
     sem_head> (n, logic:f:X_sem).
 
 npforall1 rule
-    (np, logic:@apply(X_sem, [(qvar, X)])) ===>
+    (np, logic: @apply(X_sem, [(qvar, X)])) ===>
     cat> (q, logic:forall),
     sem_head> (n, logic:f:X_sem).
 
 npforall rule
-    (np, logic:@forall((qvar, X), @apply(X_sem, [X]), (logic, P))) ===>
+    (np, logic: @forall((qvar, X), @apply(X_sem, [X]), (logic, P))) ===>
     cat> (q, logic:forall),
     sem_head> (n, logic:f:X_sem).
 
 npexists rule
-    (np, logic:@exists((qvar, X), @apply(X_sem, [X]), (logic, P))) ===>
+    (np, logic: @exists((qvar, X), @apply(X_sem, [X]), (logic, P))) ===>
     cat> (q, logic:exists),
     sem_head> (n, logic:f:X_sem).
 
