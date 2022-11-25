@@ -43,64 +43,52 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
     qs intro [l:logic, x:logic].
 
 % Lexical entries (incomplete)
-every ---> (q,
-    logic:forall
+every ---> (q
+    logic: @lambda(F, @lambda(P, @forall(X, F, P))),
     % qstore:[]
     ).
 
-a ---> (
-    logic:exists,
+a ---> (q
+    logic: @lambda(F, @lambda(P, @exists(X, F, P))),
     % qstore:[]
-    q).
+    ).
 
 language ---> (n,
-    logic:(app, f:Language),
+    logic: @lambda(X, @apply(Language, [X])),
     % qstore:[],
     sem:(language, Language)).
 
 hacker ---> (n,
-    logic:(app, f:Hacker),
+    logic: @lambda(X, @apply(Hacker, [X])),
     % qstore:[],
     sem:(hacker, Hacker)).
 
 speaks ---> (v,
-    logic:(app, f:Speak),
+    logic: @lambda(Q, 
+                @lambda(Z, 
+                    @apply(Q, [
+                        @lambda(X, @apply(Speak, [Z,X]))
+                    ]))),
     % qstore:[],
     subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
 
 % Phrase structure rules (incomplete)
-npforall2 rule
-    (np, logic:(app, f:X_sem, args:[(qvar, X)])) ===>
-    cat> (q, logic:forall),
-    sem_head> (n, logic:f:X_sem).
-
-npforall1 rule
-    (np, logic: @apply(X_sem, [(qvar, X)])) ===>
-    cat> (q, logic:forall),
-    sem_head> (n, logic:f:X_sem).
-
-npforall rule
-    (np, logic: @forall((qvar, X), @apply(X_sem, [X]), (logic, P))) ===>
-    cat> (q, logic:forall),
-    sem_head> (n, logic:f:X_sem).
-
-npexists rule
-    (np, logic: @exists((qvar, X), @apply(X_sem, [X]), (logic, P))) ===>
-    cat> (q, logic:exists),
-    sem_head> (n, logic:f:X_sem).
+np rule
+    (np, NP_logic) ===>
+    cat> (q logic: Q_logic),
+    sem_head> (n logic: N_logic),
+    goal> beta_normalize(@apply(Q_logic, [N_logic]), NP_logic).
 
 vp rule
-    (vp, logic:LF) ===>
-    sem_head> (v, logic:P),
-    cat> (np, logic:LF),
-    goal> beta_normalize(LF,P).
+    (vp) ===>
+    sem_head> (v),
+    cat> (np).
 
 s rule
-    (s, logic:LF) ===>
-    cat> (np, logic:LF),
-    sem_head> (vp, logic:P),
-    goal> beta_normalize(LF,P).
+    (s) ===>
+    cat> (np),
+    sem_head> (vp).
 
 s_gap rule
     (s) ===>
