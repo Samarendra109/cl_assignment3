@@ -54,7 +54,7 @@ a ---> (q,
     ).
 
 b ---> (q, 
-    logic: (lambda, bind:qvar, body:(app, f:Hacker, args:[qvar]))
+    logic: (lambda, bind:qvar, body:(app, f:hacker, args:[qvar]))
     ).
 
 language ---> (n,
