@@ -43,12 +43,12 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
     qs intro [l:logic, x:logic].
 
 % Lexical entries (incomplete)
-every ---> (q
+every ---> (q,
     logic: @lambda(F, @lambda(P, @forall(X, F, P))),
     % qstore:[]
     ).
 
-a ---> (q
+a ---> (q,
     logic: @lambda(F, @lambda(P, @exists(X, F, P))),
     % qstore:[]
     ).
