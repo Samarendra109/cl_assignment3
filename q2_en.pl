@@ -81,14 +81,16 @@ np rule
     goal> beta_normalize(@apply(Q_logic, [N_logic]), NP_logic).
 
 vp rule
-    (vp) ===>
-    sem_head> (v),
-    cat> (np).
+    (vp, logic: VP_logic) ===>
+    sem_head> (v, logic: V_logic),
+    cat> (np, logic: NP_logic),
+    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 s rule
-    (s) ===>
-    cat> (np),
-    sem_head> (vp).
+    (s, logic: S_logic) ===>
+    cat> (np, logic: NP_logic),
+    sem_head> (vp, logic: VP_logic),
+    goal> beta_normalize(@apply(NP_logic, [VP_logic]), S_logic).
 
 s_gap rule
     (s) ===>
