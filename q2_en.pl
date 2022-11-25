@@ -53,6 +53,10 @@ a ---> (q,
     % qstore:[]
     ).
 
+b ---> (q, 
+    logic: (lambda, bind:qvar, body:(app, f:Hacker, args:[qvar]))
+    ).
+
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
     % qstore:[],
