@@ -76,8 +76,8 @@ speaks ---> (v,
 % Phrase structure rules (incomplete)
 np rule
     (np, NP_logic) ===>
-    cat> (q logic: Q_logic),
-    sem_head> (n logic: N_logic),
+    cat> (q, logic: Q_logic),
+    sem_head> (n, logic: N_logic),
     goal> beta_normalize(@apply(Q_logic, [N_logic]), NP_logic).
 
 vp rule
