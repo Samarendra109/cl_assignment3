@@ -53,9 +53,13 @@ a ---> (q,
     % qstore:[]
     ).
 
-b ---> (q, 
-    logic: (lambda, bind:qvar, body:(app, f:hacker, args:[qvar]))
-    ).
+b ---> (q, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
+
+c ---> (logic: @lambda(
+            F,
+            @forall(X,
+                @apply(F, [X]),
+                @apply(F, [X])))).
 
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
