@@ -53,7 +53,7 @@ a ---> (q,
     % qstore:[]
     ).
 
-b ---> (q, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
+b ---> (s, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
 
 c ---> (logic: @lambda(
             F,
