@@ -27,7 +27,7 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
 
     gap_struct sub [none, np].
 
-    sem sub [hacker, language, speak].
+    sem sub [hacker, language, speak, f, g, h].
 
     list sub [e_list, ne_list].
         ne_list intro [hd:bot, tl:list].
