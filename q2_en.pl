@@ -19,11 +19,13 @@
 lan(en).
 question(q2).
 
-bot sub [cat, sem, list, logic, func, qs, gap_struct].
+bot sub [cat, sem, list, logic, func, qs, gap_struct, tmp].
     cat sub [q, det, gappable, has_sem] intro [logic:logic, qstore:list].
         has_sem sub [n, gappable] intro [sem:sem].
             gappable sub [np, verbal] intro [gap:gap_struct].
                 verbal sub [v, vp, s] intro [subcat:list].
+
+    tmp intro [logic:logic].
 
     gap_struct sub [none, np].
 
@@ -110,9 +112,9 @@ s_gap rule
     sem_head> (vp).
 
 beta rule
-(logic:LF3) ===>
-    cat> (logic:LF1),
-    cat> (logic:LF2),
+(tmp, logic:LF3) ===>
+    cat> (tmp, logic:LF1),
+    cat> (tmp, logic:LF2),
     goal> beta_normalize(@apply(LF1, [LF2]), LF3).
 
 % The empty category:
