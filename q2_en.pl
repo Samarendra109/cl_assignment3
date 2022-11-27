@@ -19,13 +19,13 @@
 lan(en).
 question(q2).
 
-bot sub [cat, sem, list, logic, func, qs, gap_struct, e].
+bot sub [cat, sem, list, logic, func, qs, gap_struct].
     cat sub [q, det, gappable, has_sem] intro [logic:logic, qstore:list].
         has_sem sub [n, gappable] intro [sem:sem].
             gappable sub [np, verbal] intro [gap:gap_struct].
                 verbal sub [v, vp, s] intro [subcat:list].
 
-    e intro [logic:logic].
+    %e intro [logic:logic].
 
     gap_struct sub [none, np].
 
@@ -76,20 +76,20 @@ speaks ---> (v,
     sem:(speak, Speak)).
 
 % Î»x. f(x)
-b ---> (e, logic: @lambda(X, @apply(f, [X]))).
+b ---> (q, logic: @lambda(X, @apply(f, [X]))).
 % Î»F. âˆ€x. F(x)
-c ---> (e, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
+c ---> (q, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
 % Î»F. âˆ€x. F(x) => F(x)
-d ---> (e, logic: @lambda(
+d ---> (q, logic: @lambda(
             F,
             @forall(X,
                 @apply(F, [X]),
                 @apply(F, [X])))).
 
 beta rule
-(e, logic:LF3) ===>
-cat> (e, logic:LF1),
-cat> (e, logic:LF2),
+(q, logic:LF3) ===>
+cat> (q, logic:LF1),
+cat> (q, logic:LF2),
 goal> beta_normalize(@apply(LF1, [LF2]), LF3).
 
 % Phrase structure rules (incomplete)
