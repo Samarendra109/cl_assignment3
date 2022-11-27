@@ -19,11 +19,13 @@
 lan(en).
 question(q2).
 
-bot sub [cat, sem, list, logic, func, qs, gap_struct].
+bot sub [cat, sem, list, logic, func, qs, gap_struct, e].
     cat sub [q, det, gappable, has_sem] intro [logic:logic, qstore:list].
         has_sem sub [n, gappable] intro [sem:sem].
             gappable sub [np, verbal] intro [gap:gap_struct].
                 verbal sub [v, vp, s] intro [subcat:list].
+
+    e intro [logic:logic].
 
     gap_struct sub [none, np].
 
@@ -53,10 +55,6 @@ a ---> (q,
     % qstore:[]
     ).
 
-b ---> (q, 
-    logic: (lambda, bind:qvar, body:(app, f:hacker, args:[qvar]))
-    ).
-
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
     % qstore:[],
@@ -78,11 +76,11 @@ speaks ---> (v,
     sem:(speak, Speak)).
 
 % Î»x. f(x)
-a ---> (logic: @lambda(X, @apply(f, [X]))).
+b ---> (e, logic: @lambda(X, @apply(f, [X]))).
 % Î»F. âˆ€x. F(x)
-b ---> (logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
+c ---> (e, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
 % Î»F. âˆ€x. F(x) => F(x)
-c ---> (logic: @lambda(
+d ---> (e, logic: @lambda(
             F,
             @forall(X,
                 @apply(F, [X]),
