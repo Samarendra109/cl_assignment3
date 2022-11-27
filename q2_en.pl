@@ -87,9 +87,9 @@ d ---> (e, logic: @lambda(
                 @apply(F, [X])))).
 
 beta rule
-(logic:LF3) ===>
-cat> (logic:LF1),
-cat> (logic:LF2),
+(e, logic:LF3) ===>
+cat> (e, logic:LF1),
+cat> (e, logic:LF2),
 goal> beta_normalize(@apply(LF1, [LF2]), LF3).
 
 % Phrase structure rules (incomplete)

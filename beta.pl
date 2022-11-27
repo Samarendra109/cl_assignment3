@@ -46,9 +46,9 @@ bn_op(and,and) if true.
 bn_op(imply,imply) if true.
 
 beta rule
-(logic:LF3) ===>
-cat> (logic:LF1),
-cat> (logic:LF2),
+(s, logic:LF3) ===>
+cat> (s, logic:LF1),
+cat> (s, logic:LF2),
 goal> beta_normalize(@apply(LF1, [LF2]), LF3).
 
 % Î»x. f(x)
