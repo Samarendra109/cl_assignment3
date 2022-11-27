@@ -52,11 +52,11 @@ cat> (logic:LF2),
 goal> beta_normalize(@apply(LF1, [LF2]), LF3).
 
 % Î»x. f(x)
-a ---> (logic: @lambda(X, @apply(f, [X]))).
+a ---> (s, logic: @lambda(X, @apply(f, [X]))).
 % Î»F. âˆ€x. F(x)
-b ---> (logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
+b ---> (s, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
 % Î»F. âˆ€x. F(x) => F(x)
-c ---> (logic: @lambda(
+c ---> (s, logic: @lambda(
             F,
             @forall(X,
                 @apply(F, [X]),
