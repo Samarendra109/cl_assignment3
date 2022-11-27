@@ -19,17 +19,15 @@
 lan(en).
 question(q2).
 
-bot sub [cat, sem, list, logic, func, qs, gap_struct, tmp].
+bot sub [cat, sem, list, logic, func, qs, gap_struct].
     cat sub [q, det, gappable, has_sem] intro [logic:logic, qstore:list].
         has_sem sub [n, gappable] intro [sem:sem].
             gappable sub [np, verbal] intro [gap:gap_struct].
                 verbal sub [v, vp, s] intro [subcat:list].
 
-    tmp intro [logic:logic].
-
     gap_struct sub [none, np].
 
-    sem sub [hacker, language, speak, f, g, h].
+    sem sub [hacker, language, speak].
 
     list sub [e_list, ne_list].
         ne_list intro [hd:bot, tl:list].
@@ -55,16 +53,9 @@ a ---> (q,
     % qstore:[]
     ).
 
-% Î»x. f(x)
-d ---> (logic: @lambda(X, @apply(f, [X]))).
-% Î»F. âˆ€x. F(x)
-b ---> (logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
-% Î»F. âˆ€x. F(x) => F(x)
-c ---> (logic: @lambda(
-            F,
-            @forall(X,
-                @apply(F, [X]),
-                @apply(F, [X])))).
+b ---> (q, 
+    logic: (lambda, bind:qvar, body:(app, f:hacker, args:[qvar]))
+    ).
 
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
@@ -110,12 +101,6 @@ s_gap rule
     cat> (Gap),
     cat> (np),
     sem_head> (vp).
-
-beta rule
-(tmp, logic:LF3) ===>
-    cat> (tmp, logic:LF1),
-    cat> (tmp, logic:LF2),
-    goal> beta_normalize(@apply(LF1, [LF2]), LF3).
 
 % The empty category:
 empty (np, sem:Sem, logic:Logic, qstore:QStore,
