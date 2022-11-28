@@ -46,7 +46,7 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
 every ---> (
     logic: @lambda(F, 
                 @lambda(P, 
-                    @exists(Y, 
+                    @forall(Y, 
                         @apply(F, [Y]),
                         @apply(P, [Y])))),
     % qstore:[]
@@ -55,7 +55,7 @@ every ---> (
 a ---> (
     logic: @lambda(F, 
                 @lambda(P, 
-                    @forall(Y, 
+                    @exists(Y, 
                         @apply(F, [Y]),
                         @apply(P, [Y])))),
     % qstore:[]
