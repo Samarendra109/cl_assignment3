@@ -47,7 +47,7 @@ every ---> (
     logic: @lambda(F, 
                 @lambda(P, 
                     @exists(Y, 
-                        @apply(F, [Y])
+                        @apply(F, [Y]),
                         @apply(P, [Y])))),
     % qstore:[]
     q).
@@ -56,7 +56,7 @@ a ---> (
     logic: @lambda(F, 
                 @lambda(P, 
                     @forall(Y, 
-                        @apply(F, [Y])
+                        @apply(F, [Y]),
                         @apply(P, [Y])))),
     % qstore:[]
     q).
