@@ -25,11 +25,9 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
             gappable sub [np, verbal] intro [gap:gap_struct].
                 verbal sub [v, vp, s] intro [subcat:list].
 
-    %e intro [logic:logic].
-
     gap_struct sub [none, np].
 
-    sem sub [hacker, language, speak, f, g, h].
+    sem sub [hacker, language, speak].
 
     list sub [e_list, ne_list].
         ne_list intro [hd:bot, tl:list].
@@ -45,15 +43,23 @@ bot sub [cat, sem, list, logic, func, qs, gap_struct].
     qs intro [l:logic, x:logic].
 
 % Lexical entries (incomplete)
-every ---> (q,
-    logic: @lambda(F, @lambda(P, @forall(X, F, P)))
+every ---> (
+    logic: @lambda(F, 
+                @lambda(P, 
+                    @exists(Y, 
+                        @apply(F, [Y])
+                        @apply(P, [Y])))),
     % qstore:[]
-    ).
+    q).
 
-a ---> (q,
-    logic: @lambda(F, @lambda(P, @exists(X, F, P)))
+a ---> (
+    logic: @lambda(F, 
+                @lambda(P, 
+                    @forall(Y, 
+                        @apply(F, [Y])
+                        @apply(P, [Y])))),
     % qstore:[]
-    ).
+    q).
 
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
@@ -61,7 +67,7 @@ language ---> (n,
     sem:(language, Language)).
 
 hacker ---> (n,
-    logic: @lambda(X, @apply(Hacker, [X])),
+    logic: @lambda(X, @apply(Hacker, [X])),,
     % qstore:[],
     sem:(hacker, Hacker)).
 
@@ -69,46 +75,29 @@ speaks ---> (v,
     logic: @lambda(Q, 
                 @lambda(Z, 
                     @apply(Q, [
-                        @lambda(X, @apply(Speak, [Z,X]))
+                        @lambda(X, @apply(Speak, [Z, X]))
                     ]))),
     % qstore:[],
     subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
 
-% Î»x. f(x)
-b ---> (q, logic: @lambda(X, @apply(f, [X]))).
-% Î»F. âˆ€x. F(x)
-c ---> (q, logic: @lambda(F, (forall, bind: X, body: @apply(F, [X])))).
-% Î»F. âˆ€x. F(x) => F(x)
-d ---> (q, logic: @lambda(
-            F,
-            @forall(X,
-                @apply(F, [X]),
-                @apply(F, [X])))).
-
-beta rule
-(q, logic:LF3) ===>
-cat> (q, logic:LF1),
-cat> (q, logic:LF2),
-goal> beta_normalize(@apply(LF1, [LF2]), LF3).
-
 % Phrase structure rules (incomplete)
 np rule
     (np, logic: NP_logic) ===>
     cat> (q, logic: Q_logic),
-    sem_head> (n, logic: N_logic),
+    sem_head> (n, logic:N_logic),
     goal> beta_normalize(@apply(Q_logic, [N_logic]), NP_logic).
 
 vp rule
     (vp, logic: VP_logic) ===>
-    sem_head> (v, logic: V_logic),
-    cat> (np, logic: NP_logic),
+    sem_head> (v, logic:V_logic),
+    cat> (np, logic:NP_logic),
     goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 s rule
     (s, logic: S_logic) ===>
-    cat> (np, logic: NP_logic),
-    sem_head> (vp, logic: VP_logic),
+    cat> (np, logic:NP_logic),
+    sem_head> (vp, logic:VP_logic),
     goal> beta_normalize(@apply(NP_logic, [VP_logic]), S_logic).
 
 s_gap rule
