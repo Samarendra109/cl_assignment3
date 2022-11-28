@@ -67,7 +67,7 @@ language ---> (n,
     sem:(language, Language)).
 
 hacker ---> (n,
-    logic: @lambda(X, @apply(Hacker, [X])),,
+    logic: @lambda(X, @apply(Hacker, [X])),
     % qstore:[],
     sem:(hacker, Hacker)).
 
