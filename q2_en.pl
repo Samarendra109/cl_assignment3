@@ -100,11 +100,11 @@ s rule
     sem_head> (vp, logic:VP_logic),
     goal> beta_normalize(@apply(NP_logic, [VP_logic]), S_logic).
 
-s_gap rule
-    (s) ===>
-    cat> (Gap),
-    cat> (np),
-    sem_head> (vp).
+% s_gap rule
+%     (s) ===>
+%     cat> (Gap),
+%     cat> (np),
+%     sem_head> (vp).
 
 % The empty category:
 empty (np, sem:Sem, logic:Logic, qstore:QStore,
