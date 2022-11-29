@@ -49,7 +49,7 @@ every ---> (
                     @forall(Y, 
                         @apply(F, [Y]),
                         @apply(P, [Y])))),
-    qstore:[]
+    qstore:[],
     q).
 
 a ---> (
@@ -58,7 +58,7 @@ a ---> (
                     @exists(Y, 
                         @apply(F, [Y]),
                         @apply(P, [Y])))),
-    qstore:[]
+    qstore:[],
     q).
 
 language ---> (n,
