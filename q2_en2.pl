@@ -111,8 +111,8 @@ s rule
 %     sem_head> (vp).
 
 % The empty category:
-empty (np, sem:Sem, logic:Logic, qstore:QStore,
-    gap:(sem:Sem, logic:Logic, qstore:QStore, gap:none)).
+% empty (np, sem:Sem, logic:Logic, qstore:QStore,
+%     gap:(sem:Sem, logic:Logic, qstore:QStore, gap:none)).
 
 % Macros
 lambda(X, Body) macro (lambda, bind:X, body:Body).
