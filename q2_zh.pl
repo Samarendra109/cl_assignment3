@@ -133,7 +133,7 @@ s rule
     cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr)),
     sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:NP_agr),
     goal> apply_normalize_and_retrieve(
-        NP_logic, VP_logic, VP_qstore, S_logic, S_qstore
+        NP_agr, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore
     ).
 
 % s_gap rule
@@ -158,9 +158,15 @@ apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
-apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+apply_normalize_and_retrieve(NP_agr, LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    bn_quant(NP_agr, forall),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
+
+apply_normalize_and_retrieve(NP_agr, LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    bn_quant(NP_agr, exists),
+    is_empty(QStore),
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
 
 % Helper goals
 append([],Xs,Xs) if true.
