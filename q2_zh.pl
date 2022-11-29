@@ -110,7 +110,7 @@ huishuo ---> (v,
 % Phrase structure rules (incomplete)
 np rule
     (np, logic:NP_logic, qstore:NP_qstore, agr:(quant, Q_agr)) ===>
-    cat> (q, logic:Q_logic, arg:Q_agr),
+    cat> (q, logic:Q_logic, agr:Q_agr),
     cat> (cl, agr:(cl_agr, CL_agr)),
     sem_head> (n, logic:N_logic, qstore:N_qstore, agr:CL_agr),
     goal> apply_normalize_and_qaction(
