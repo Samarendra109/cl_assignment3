@@ -153,11 +153,11 @@ resolve_gap_and_normalize(
         S_logic, S_qstore
     ) if
     prolog((write('Here 5'),nl)),
-    prolog((my_pp_fs(NP_Sub_logic),nl)),
-    prolog((my_pp_fs(VP_logic),nl)),
-    prolog((my_pp_fs(Gap),nl)),
-    prolog((my_pp_fs(NP_Obj_logic),nl)),
-    prolog((my_pp_fs(NP_Obj_qstore),nl)),
+    prolog((pp_fs(NP_Sub_logic),nl)),
+    prolog((pp_fs(VP_logic),nl)),
+    prolog((pp_fs(Gap),nl)),
+    prolog((pp_fs(NP_Obj_logic),nl)),
+    prolog((pp_fs(NP_Obj_qstore),nl)),
     is_gap(Gap),
     beta_normalize(@apply(VP_logic, [NP_obj_logic]), VP_obj_logic),
     apply_normalize_and_retrieve(NP_Sub_logic, VP_obj_logic, NP_Obj_qstore, S_logic, S_qstore).
