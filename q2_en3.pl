@@ -64,7 +64,7 @@ a ---> (
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
     qstore:[],
-    gap: none,
+    %gap: none,
     sem:(language, Language)).
 
 hacker ---> (n,
