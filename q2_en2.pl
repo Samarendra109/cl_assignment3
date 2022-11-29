@@ -86,8 +86,8 @@ np rule
     (np, logic: NP_logic, qstore: NP_qstore) ===>
     cat> (q, logic: Q_logic),
     sem_head> (n, logic:N_logic, qstore: N_qstore),
-    goal> beta_normalize(@apply(Q_logic, [N_logic]), Norm_logic). %, 
-        %qaction(Norm_logic, N_qstore, NP_logic, NP_qstore).
+    goal> beta_normalize(@apply(Q_logic, [N_logic]), Norm_logic), 
+        qaction(Norm_logic, N_qstore, NP_logic, NP_qstore).
 
 vp rule
     (vp, logic: VP_logic) ===>
