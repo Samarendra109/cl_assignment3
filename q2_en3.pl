@@ -123,10 +123,12 @@ apply(F, Args) macro (app, f:F, args:Args).
 
 % extra helper goals
 apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    prolog(write('Here 1'),nl),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
 apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    prolog(write('Here 2'),nl),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
@@ -134,13 +136,15 @@ is_not_gap(none) if true.
 is_gap(np) if true.
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
+    prolog(write('Here 3'),nl),
     is_not_gap(Gap),
-    prolog(write('Is not Gap')),
+    prolog(write('Is not Gap'),nl),
     beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
+    prolog(write('Here 4'),nl),
     is_gap(Gap),
-    prolog(write('Is Gap')).
+    prolog(write('Is Gap'),nl).
 
 resolve_gap_and_normalize(
         NP_Sub_logic, 
@@ -148,6 +152,7 @@ resolve_gap_and_normalize(
         (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore), 
         S_logic, S_qstore
     ) if
+    prolog(write('Here 5'),nl),
     is_gap(Gap),
     beta_normalize(@apply(VP_logic, [NP_obj_logic]), VP_obj_logic),
     apply_normalize_and_retrieve(NP_Sub_logic, VP_obj_logic, NP_Obj_qstore, S_logic, S_qstore).
