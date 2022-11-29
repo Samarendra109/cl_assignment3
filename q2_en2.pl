@@ -97,7 +97,7 @@ vp rule
     goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 s rule
-    (s, logic: S_logic, qstore: S_qstore) ===>
+    (s, logic: S_logic, qstore: VP_qstore) ===>
     cat> (np, logic:NP_logic),
     sem_head> (vp, logic:VP_logic, qstore: VP_qstore),
     goal> apply_normalize_and_retrieve(
