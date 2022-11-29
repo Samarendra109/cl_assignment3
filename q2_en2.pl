@@ -127,6 +127,10 @@ apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
+apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
+    retrieve(QStore, Norm_logic, NewQStore, NewLogic).
+
 % Helper goals
 append([],Xs,Xs) if true.
 append([H|T1],L2,[H|T2]) if append(T1,L2,T2).
