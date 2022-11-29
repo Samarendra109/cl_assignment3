@@ -104,11 +104,11 @@ s rule
         NP_logic, VP_logic, VP_qstore, S_logic, S_qstore
     ).
 
-s_gap rule
-    (s) ===>
-    cat> (Gap),
-    cat> (np),
-    sem_head> (vp).
+% s_gap rule
+%     (s) ===>
+%     cat> (Gap),
+%     cat> (np),
+%     sem_head> (vp).
 
 % The empty category:
 empty (np, sem:Sem, logic:Logic, qstore:QStore,
