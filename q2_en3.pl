@@ -135,12 +135,12 @@ is_gap(np) if true.
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
     is_not_gap(Gap),
-    prolog(write("Is not Gap")),
+    prolog(write('Is not Gap')),
     beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
     is_gap(Gap),
-    prolog(write("Is Gap")),.
+    prolog(write('Is Gap')).
 
 resolve_gap_and_normalize(
         NP_Sub_logic, 
