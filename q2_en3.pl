@@ -153,7 +153,7 @@ resolve_gap_and_normalize(
         S_logic, S_qstore
     ) if
     prolog((write('Here 5'),nl)),
-    prolog((pp_fs(NP_Sub_logic),nl)),
+    prolog(pp_fs(NP_Sub_logic)),
     prolog((pp_fs(VP_logic),nl)),
     prolog((pp_fs(Gap),nl)),
     prolog((pp_fs(NP_Obj_logic),nl)),
