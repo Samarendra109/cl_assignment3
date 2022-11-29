@@ -56,14 +56,22 @@ bot sub [cat, sem, list, logic, gap_struct, agr].
 % Lexical entries (incomplete)
 % 每: the universal quantifier
 mei ---> (q,
-    % logic:none,
-    % qstore:[],
+    logic: @lambda(F, 
+                @lambda(P, 
+                    @forall(Y, 
+                        @apply(F, [Y]),
+                        @apply(P, [Y])))),
+    qstore:[],
     agr:forall).
 
 % 一: the existential quantifier
 yi ---> (q,
-    % logic:none,
-    % qstore:[],
+    logic: @lambda(F, 
+                @lambda(P, 
+                    @exists(Y, 
+                        @apply(F, [Y]),
+                        @apply(P, [Y])))),
+    qstore:[],
     agr:exists).
 
 % 个: the classifier for hackers
@@ -77,55 +85,66 @@ dou ---> dou.
 % 语言: language
 yuyan ---> (n,
     agr:zhong,
-    % logic:none,
-    % qstore:[],
+    logic: @lambda(X, @apply(Language, [X])),
+    qstore:[],
     sem:(language, Language)).
 
 % 黑客: hacker
 heike ---> (n,
     agr:ge,
-    % logic:none,
-    % qstore:[],
+    logic: @lambda(X, @apply(Hacker, [X])),
+    qstore:[],
     sem:(hacker, Hacker)).
 
 % 会说: speak
 huishuo ---> (v,
-    % logic:none,
-    % qstore:[],
+    logic: @lambda(Q, 
+                @lambda(Z, 
+                    @apply(Q, [
+                        @lambda(X, @apply(Speak, [Z, X]))
+                    ]))),
+    qstore:[],
     subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
 
 % Phrase structure rules (incomplete)
 np rule
-    (np) ===>
-    cat> (q),
-    cat> (cl),
-    sem_head> (n).
+    (np, logic:NP_logic, qstore:NP_qstore, agr:(quant, Q_agr)) ===>
+    cat> (q, logic:Q_logic, arg:Q_agr),
+    cat> (cl, agr:(cl_agr, CL_agr)),
+    sem_head> (n, logic:N_logic, qstore:N_qstore, agr:CL_agr),
+    goal> apply_normalize_and_qaction(
+        Q_logic, N_logic, N_qstore, NP_logic, NP_qstore
+    ).
 
 vp rule
-    (vp) ===>
-    sem_head> (v),
-    cat> (np).
+    (vp, logic: VP_logic, qstore: NP_qstore, agr:exists) ===>
+    sem_head> (v, logic:V_logic),
+    cat> (np, logic:NP_logic, qstore: NP_qstore),
+    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 dou rule
-    (vp) ===>
+    (vp, logic: VP_logic, qstore: VP_qstore, agr:forall) ===>
     cat> (dou),
-    sem_head> (vp).
+    sem_head> (vp, logic: VP_logic, qstore: VP_qstore).
 
 s rule
-    (s) ===>
-    cat> (np),
-    sem_head> (vp).
+    (s, logic: S_logic, qstore: S_qstore) ===>
+    cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr)),
+    sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:NP_agr),
+    goal> apply_normalize_and_retrieve(
+        NP_logic, VP_logic, VP_qstore, S_logic, S_qstore
+    ).
 
-s_gap rule
-    (s) ===>
-    cat> (Gap),
-    cat> (np),
-    sem_head> (vp).
+% s_gap rule
+%     (s) ===>
+%     cat> (Gap),
+%     cat> (np),
+%     sem_head> (vp).
 
 % The empty category
-empty (np, sem:Sem, logic:Logic, qstore:QStore, agr:Agr,
-    gap:(sem:Sem, logic:Logic, qstore:QStore, agr:Agr, gap:none)).
+% empty (np, sem:Sem, logic:Logic, qstore:QStore, agr:Agr,
+%     gap:(sem:Sem, logic:Logic, qstore:QStore, agr:Agr, gap:none)).
 
 
 % Macros
@@ -133,6 +152,15 @@ lambda(X, Body) macro (lambda, bind:X, body:Body).
 forall(X, Restr, Body) macro (forall, bind:X, body:(imply, lhs:Restr, rhs:Body)).
 exists(X, Restr, Body) macro (exists, bind:X, body:(and, lhs:Restr, rhs:Body)).
 apply(F, Args) macro (app, f:F, args:Args).
+
+% extra helper goals
+apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
+    qaction(Norm_logic, QStore, NewLogic, NewQStore).
+
+apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
+    retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
 % Helper goals
 append([],Xs,Xs) if true.
