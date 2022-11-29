@@ -86,8 +86,9 @@ np rule
     (np, logic: NP_logic, qstore: NP_qstore) ===>
     cat> (q, logic: Q_logic),
     sem_head> (n, logic:N_logic, qstore: N_qstore),
-    goal> beta_normalize(@apply(Q_logic, [N_logic]), Norm_logic), 
-        qaction(Norm_logic, N_qstore, NP_logic, NP_qstore).
+    goal> normalize_and_qaction(
+        @apply(Q_logic, [N_logic]), N_qstore, NP_logic, NP_qstore
+    ).
 
 vp rule
     (vp, logic: VP_logic) ===>
@@ -116,6 +117,11 @@ lambda(X, Body) macro (lambda, bind:X, body:Body).
 forall(X, Restr, Body) macro (forall, bind:X, body:(imply, lhs:Restr, rhs:Body)).
 exists(X, Restr, Body) macro (exists, bind:X, body:(and, lhs:Restr, rhs:Body)).
 apply(F, Args) macro (app, f:F, args:Args).
+
+% np goal
+normalize_and_qaction(Logic, QStore, NewLogic, NewQStore) if
+    beta_normalize(Logic, Norm_logic),
+    qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
 % Helper goals
 append([],Xs,Xs) if true.
