@@ -64,13 +64,11 @@ a ---> (
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
     qstore:[],
-    %gap: none,
     sem:(language, Language)).
 
 hacker ---> (n,
     logic: @lambda(X, @apply(Hacker, [X])),
     qstore:[],
-    gap: none,
     sem:(hacker, Hacker)).
 
 speaks ---> (v,
@@ -85,9 +83,9 @@ speaks ---> (v,
 
 % Phrase structure rules (incomplete)
 np rule
-    (np, logic: NP_logic, qstore: NP_qstore, gap:Gap) ===>
+    (np, logic: NP_logic, qstore: NP_qstore, gap:none) ===>
     cat> (q, logic: Q_logic),
-    sem_head> (n, logic:N_logic, qstore: N_qstore, gap:Gap),
+    sem_head> (n, logic:N_logic, qstore: N_qstore),
     goal> apply_normalize_and_qaction(
         Q_logic, N_logic, N_qstore, NP_logic, NP_qstore
     ).
