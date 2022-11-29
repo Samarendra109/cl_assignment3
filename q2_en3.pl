@@ -152,8 +152,8 @@ resolve_gap_and_normalize(
     prolog((write(Gap),nl)),
     prolog((write(NP_Obj_logic),nl)),
     prolog((write(NP_Obj_qstore),nl)),
-    beta_normalize(@apply(VP_logic, [NP_obj_logic]), VP_obj_logic),
-    apply_normalize_and_retrieve(NP_Sub_logic, VP_obj_logic, NP_Obj_qstore, S_logic, S_qstore).
+    beta_normalize(@apply(VP_logic, [NP_Obj_logic]), VP_Obj_logic),
+    apply_normalize_and_retrieve(NP_Sub_logic, VP_Obj_logic, NP_Obj_qstore, S_logic, S_qstore).
 
 % Helper goals
 append([],Xs,Xs) if true.
