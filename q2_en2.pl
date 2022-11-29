@@ -49,7 +49,7 @@ every ---> (
                     @forall(Y, 
                         @apply(F, [Y]),
                         @apply(P, [Y])))),
-    % qstore:[]
+    qstore:[]
     q).
 
 a ---> (
@@ -58,17 +58,17 @@ a ---> (
                     @exists(Y, 
                         @apply(F, [Y]),
                         @apply(P, [Y])))),
-    % qstore:[]
+    qstore:[]
     q).
 
 language ---> (n,
     logic: @lambda(X, @apply(Language, [X])),
-    % qstore:[],
+    qstore:[],
     sem:(language, Language)).
 
 hacker ---> (n,
     logic: @lambda(X, @apply(Hacker, [X])),
-    % qstore:[],
+    qstore:[],
     sem:(hacker, Hacker)).
 
 speaks ---> (v,
@@ -77,7 +77,7 @@ speaks ---> (v,
                     @apply(Q, [
                         @lambda(X, @apply(Speak, [Z, X]))
                     ]))),
-    % qstore:[],
+    qstore:[],
     subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
 
