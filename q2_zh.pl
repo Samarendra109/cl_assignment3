@@ -163,7 +163,7 @@ apply_normalize_and_retrieve(NP_agr, LogicFunc, LogicArg, QStore, NewLogic, NewQ
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
-apply_normalize_and_retrieve(NP_agr, LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+apply_normalize_and_retrieve(NP_agr, LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
     prolog((write('Q Check'))),
     bn_quant(NP_agr, exists),
     prolog((write('E Check'))),
