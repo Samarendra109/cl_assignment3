@@ -94,7 +94,7 @@ vp rule
     (vp, logic: VP_logic, qstore: NP_qstore) ===>
     sem_head> (v, logic:V_logic),
     cat> (np, logic:NP_logic, qstore: NP_qstore),
-    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic)
+    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 s rule
     (s, logic: S_logic, qstore: S_qstore) ===>
