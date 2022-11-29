@@ -88,26 +88,17 @@ np rule
     sem_head> (n, logic:N_logic),
     goal> beta_normalize(@apply(Q_logic, [N_logic]), NP_logic).
 
-npq rule
-    (np, logic: New_NP_logic, qstore: New_Qstore) ===>
-    cat> (q, logic: Q_logic),
-    sem_head> (n, logic:N_logic),
-    goal> beta_normalize(@apply(Q_logic, [N_logic]), NP_logic),
-    goal> qaction(NP_logic, [], New_NP_logic, New_Qstore).
-
 vp rule
-    (vp, logic: VP_logic, qstore: VP_Qstore) ===>
-    sem_head> (v, logic:V_logic, qstore: V_Qstore),
-    cat> (np, logic:NP_logic, qstore: NP_Qstore),
-    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic),
-    goal> append(V_Qstore, NP_Qstore, VP_Qstore).
+    (vp, logic: VP_logic) ===>
+    sem_head> (v, logic:V_logic),
+    cat> (np, logic:NP_logic),
+    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 s rule
-    (s, logic: New_S_logic, qstore: New_S_Qstore) ===>
-    cat> (np, logic:NP_logic, qstore: NP_Qstore),
-    sem_head> (vp, logic:VP_logic, qstore: VP_Qstore),
-    goal> append(NP_Qstore, VP_Qstore, S_Qstore),
-    goal> retrieve(S_Qstore, S_logic, New_S_logic, New_S_Qstore).
+    (s, logic: S_logic) ===>
+    cat> (np, logic:NP_logic),
+    sem_head> (vp, logic:VP_logic),
+    goal> beta_normalize(@apply(NP_logic, [VP_logic]), S_logic).
 
 s_gap rule
     (s) ===>
