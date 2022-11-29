@@ -91,12 +91,10 @@ np rule
     ).
 
 vp rule
-    (vp, logic: VP_logic, qstore: VP_qstore) ===>
+    (vp, logic: VP_logic, qstore: NP_qstore) ===>
     sem_head> (v, logic:V_logic),
     cat> (np, logic:NP_logic, qstore: NP_qstore),
-    goal> apply_normalize_and_qaction(
-        V_logic, NP_logic, NP_qstore, VP_logic, VP_qstore
-    ).
+    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic)
 
 s rule
     (s, logic: S_logic, qstore: S_qstore) ===>
