@@ -98,8 +98,8 @@ vp rule
 
 s rule
     (s, logic: S_logic, qstore: S_qstore) ===>
-    cat> (np, logic:NP_logic, qstore: e_list),
-    sem_head> (vp, logic:VP_logic, qstore: (ne_list, VP_qstore)),
+    cat> (np, logic:NP_logic),
+    sem_head> (vp, logic:VP_logic, qstore: VP_qstore),
     goal> apply_normalize_and_retrieve(
         NP_logic, VP_logic, VP_qstore, S_logic, S_qstore
     ).
