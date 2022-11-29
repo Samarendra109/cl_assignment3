@@ -130,8 +130,8 @@ apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) i
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
-is_not_gap(none) :- true.
-is_gap(np) :- true.
+is_not_gap(none) if true.
+is_gap(np) if true.
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
     is_not_gap(Gap),
