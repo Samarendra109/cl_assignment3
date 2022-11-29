@@ -86,21 +86,25 @@ np rule
     (np, logic: NP_logic, qstore: NP_qstore) ===>
     cat> (q, logic: Q_logic),
     sem_head> (n, logic:N_logic, qstore: N_qstore),
-    goal> normalize_and_qaction(
+    goal> apply_normalize_and_qaction(
         Q_logic, N_logic, N_qstore, NP_logic, NP_qstore
     ).
 
 vp rule
-    (vp, logic: VP_logic) ===>
+    (vp, logic: VP_logic, qstore: VP_qstore) ===>
     sem_head> (v, logic:V_logic),
-    cat> (np, logic:NP_logic),
-    goal> beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
+    cat> (np, logic:NP_logic, qstore: NP_qstore),
+    goal> apply_normalize_and_qaction(
+        V_logic, NP_logic, NP_qstore, VP_logic, VP_qstore
+    ).
 
 s rule
-    (s, logic: S_logic) ===>
+    (s, logic: S_logic, qstore: S_qstore) ===>
     cat> (np, logic:NP_logic),
-    sem_head> (vp, logic:VP_logic),
-    goal> beta_normalize(@apply(NP_logic, [VP_logic]), S_logic).
+    sem_head> (vp, logic:VP_logic, qstore: VP_qstore),
+    goal> apply_normalize_and_qaction(
+        NP_logic, VP_logic, VP_qstore, S_logic, S_qstore
+    ).
 
 s_gap rule
     (s) ===>
@@ -119,7 +123,7 @@ exists(X, Restr, Body) macro (exists, bind:X, body:(and, lhs:Restr, rhs:Body)).
 apply(F, Args) macro (app, f:F, args:Args).
 
 % np goal
-normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
