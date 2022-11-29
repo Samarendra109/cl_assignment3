@@ -147,11 +147,6 @@ resolve_gap_and_normalize(
         S_logic, S_qstore
     ) if
     is_gap(Gap),
-    prolog((write(NP_Sub_logic),nl)),
-    prolog((write(VP_logic),nl)),
-    prolog((write(Gap),nl)),
-    prolog((write(NP_Obj_logic),nl)),
-    prolog((write(NP_Obj_qstore),nl)),
     beta_normalize(@apply(VP_logic, [NP_Obj_logic]), VP_Obj_logic),
     apply_normalize_and_retrieve(NP_Sub_logic, VP_Obj_logic, NP_Obj_qstore, S_logic, S_qstore).
 
