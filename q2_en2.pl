@@ -87,7 +87,7 @@ np rule
     cat> (q, logic: Q_logic),
     sem_head> (n, logic:N_logic, qstore: N_qstore),
     goal> normalize_and_qaction(
-        @apply(Q_logic, [N_logic]), N_qstore, NP_logic, NP_qstore
+        Q_logic, N_logic, N_qstore, NP_logic, NP_qstore
     ).
 
 vp rule
@@ -119,8 +119,8 @@ exists(X, Restr, Body) macro (exists, bind:X, body:(and, lhs:Restr, rhs:Body)).
 apply(F, Args) macro (app, f:F, args:Args).
 
 % np goal
-normalize_and_qaction(Logic, QStore, NewLogic, NewQStore) if
-    beta_normalize(Logic, Norm_logic),
+normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
 % Helper goals
