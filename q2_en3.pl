@@ -107,7 +107,7 @@ s rule
 s_gap rule
     (s, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
     cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, NP_obj),
-    cat> (np, logic:NP_Sub_logic, qstore: e_list),
+    cat> (np, logic:NP_Sub_logic, qstore: e_list, gap:None),
     sem_head> (vp, logic:VP_logic, qstore: VP_qstore, gap:Gap, VP),
     goal> resolve_gap_and_normalize(NP_Sub_logic, VP, NP_Obj, S_logic, S_qstore).
 
