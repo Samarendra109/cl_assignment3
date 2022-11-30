@@ -175,7 +175,7 @@ apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic
 append_np_and_process(
     (np, logic: NP_logic, NP), (vp, logic: VP_logic, subcat: VP_subcat), VP_qstore, S_logic, S_qstore
 ) if
-    append(VP_subcat, NP, VP_c_subcat),
+    % append(VP_subcat, NP, VP_c_subcat),
     apply_normalize_and_retrieve(NP, VP_subcat, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
 
 
