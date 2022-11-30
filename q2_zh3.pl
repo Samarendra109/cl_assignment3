@@ -133,7 +133,7 @@ s rule
     cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), NP_sub),
     sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, subcat: VP_subcat),
     goal> append_np_and_process(
-        NP, NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_qstore
+        NP_sub, NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_qstore
     ).
 
 s_gap rule
