@@ -181,7 +181,7 @@ append_np_and_process(NP, NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_q
     append(VP_subcat, NP, VP_subcat),
     prolog((write('Append Done'),nl)),
     apply_normalize_and_retrieve(NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_qstore),
-    prolog((write('Process Done'),nl)),.
+    prolog((write('Process Done'),nl)).
 
 is_not_gap(none) if true.
 is_gap(np) if true.
