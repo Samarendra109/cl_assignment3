@@ -161,7 +161,7 @@ apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
 
 is_ambigous([(np, agr:NP1_agr), (np, agr:NP2_agr)]) if
     bn_quant(NP1_agr, forall),
-    bn_quant(NP2_agr, exists)
+    bn_quant(NP2_agr, exists).
 
 is_not_ambiguos(VP_subcat) if
     is_ambigous(VP_subcat), !, false.
