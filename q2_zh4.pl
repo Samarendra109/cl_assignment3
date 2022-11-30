@@ -138,7 +138,7 @@ s_gap rule
     (s, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
     cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, NP_Obj),
     cat> (np, logic:NP_Sub_logic, qstore: e_list, agr:(forall, Forall), gap:None, NP),
-    sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:Forall gap:Gap, VP),
+    sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, VP),
     goal> resolve_gap_and_normalize(NP, NP_Sub_logic, VP, NP_Obj, S_logic, S_qstore).
 
 % The empty category
