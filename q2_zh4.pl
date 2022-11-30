@@ -205,7 +205,7 @@ resolve_gap_and_normalize(
     prolog((write('Gap checked'),nl)),
     beta_normalize(@apply(VP_logic, [NP_Obj_logic]), VP_Obj_logic),
     prolog((write('Normalized'),nl)),
-    apply_normalize_and_retrieve(NP, [NP_obj], NP_Sub_logic, VP_Obj_logic, NP_Obj_qstore, S_logic, S_qstore),
+    apply_normalize_and_retrieve(NP_obj, [NP], NP_Sub_logic, VP_Obj_logic, NP_Obj_qstore, S_logic, S_qstore),
     prolog((write('Done'),nl)).
 
 
