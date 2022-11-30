@@ -158,7 +158,9 @@ apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
-is_ambigous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
+is_ambigous(NP1, NP2) if
+    NP1_agr = NP1:agr,
+    NP2_agr = NP2:agr,
     bn_quant(NP1_agr, forall),
     bn_quant(NP2_agr, exists).
 
