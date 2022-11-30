@@ -185,7 +185,7 @@ is_gap(np) if true.
 
 check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap, NP), VP_logic, VP_subcat) if
     is_not_gap(Gap),
-    append(V_subcat, NP, VP_subcat)
+    append(V_subcat, NP, VP_subcat),
     beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic, V_subcat) if
