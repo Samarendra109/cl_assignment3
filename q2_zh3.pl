@@ -156,6 +156,7 @@ apply(F, Args) macro (app, f:F, args:Args).
 
 % extra helper goals
 apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    prolog((write('NP Rule'),nl)),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
@@ -187,11 +188,13 @@ is_not_gap(none) if true.
 is_gap(np) if true.
 
 check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap, NP), VP_logic, VP_subcat) if
+    prolog((write('VP Rule'),nl)),
     is_not_gap(Gap),
     append(V_subcat, NP, VP_subcat),
     beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic, V_subcat) if
+    prolog((write('VP Rule'),nl)),
     is_gap(Gap).
 
 resolve_gap_and_normalize(
