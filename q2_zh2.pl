@@ -174,12 +174,12 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
     bn_quant(NP1_agr, exists),
     bn_quant(NP2_agr, forall).
 
-apply_normalize_and_retrieve(NP1, [NP2| T], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     is_ambiguous(NP1, NP2),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
-apply_normalize_and_retrieve(NP1, [NP2| T], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
+apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
     is_not_ambiguous(NP1, NP2),
     is_empty(QStore),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
@@ -187,8 +187,8 @@ apply_normalize_and_retrieve(NP1, [NP2| T], LogicFunc, LogicArg, QStore, Norm_lo
 append_np_and_process(
     (np, logic: NP_logic, NP), (vp, logic: VP_logic, subcat: VP_subcat), VP_qstore, S_logic, S_qstore
 ) if
-    append(VP_subcat, NP, VP_c_subcat),
-    apply_normalize_and_retrieve(NP, VP_c_subcat, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
+    apply_normalize_and_retrieve(NP, VP_subcat, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore),
+    append(VP_subcat, NP, VP_subcat).
 
 
 % Helper goals
