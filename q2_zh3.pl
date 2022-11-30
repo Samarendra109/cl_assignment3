@@ -177,8 +177,11 @@ apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, VP_subcat, Norm_logic,
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
 
 append_np_and_process(NP, NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_qstore) if
+    prolog((write('Append Starts'),nl)),
     append(VP_subcat, NP, VP_subcat),
-    apply_normalize_and_retrieve(NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_qstore).
+    prolog((write('Append Done'),nl)),
+    apply_normalize_and_retrieve(NP_logic, VP_logic, VP_qstore, VP_subcat, S_logic, S_qstore),
+    prolog((write('Process Done'),nl)),.
 
 is_not_gap(none) if true.
 is_gap(np) if true.
