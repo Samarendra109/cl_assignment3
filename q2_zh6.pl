@@ -118,10 +118,10 @@ np rule
     ).
 
 vp rule
-    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, agr:exists, subcat: Restr, gap:Gap) ===>
-    sem_head> (v, sem:V_sem, logic:V_logic, subcat:[(np, sem:NP_obj_sem)|Restr]),
+    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, agr:exists, subcat: VP_subcat, gap:Gap) ===>
+    sem_head> (v, sem:V_sem, logic:V_logic, subcat:V_subcat),
     cat> (np, logic:NP_logic, qstore: NP_qstore, gap:Gap, sem:NP_obj_sem, NP),
-    goal> check_gap_and_normalize(V_logic, NP, VP_logic).
+    goal> check_gap_and_normalize(V_logic, NP, V_subcat, VP_logic, VP_subcat).
 
 dou rule
     (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:forall, subcat: VP_subcat) ===>
@@ -174,11 +174,12 @@ apply_normalize_and_retrieve(NP1, LogicFunc, LogicArg, QStore, Norm_logic, QStor
 is_not_gap(none) if true.
 is_gap(np) if true.
 
-check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
+check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap, sem:NP_obj_sem), VP_logic, VP_subcat) if
     is_not_gap(Gap),
-    beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
+    beta_normalize(@apply(V_logic, [NP_logic]), VP_logic),
+    append(VP_subcat, [(np, sem:NP_obj_sem)], V_subcat).
 
-check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
+check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap), V_logic, V_subcat) if
     is_gap(Gap).
 
 is_not_empty([_|_]) if true.
