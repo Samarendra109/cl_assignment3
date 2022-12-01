@@ -174,15 +174,24 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
     bn_quant(NP2_agr, forall).
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    prolog((write('here 1'), nl)),
     is_ambiguous(NP1, NP2),
+    prolog((write('here 2'), nl)),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
+    prolog((write('here 3'), nl)),
     is_not_empty(QStore),
-    retrieve(QStore, Norm_logic, NewQStore, NewLogic).
+    prolog((write('here 4'), nl)),
+    retrieve(QStore, Norm_logic, NewQStore, NewLogic),
+    prolog((write('here 5'), nl)).
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
+    prolog((write('there 1'), nl)),
     is_not_ambiguous(NP1, NP2),
+    prolog((write('there 2'), nl)),
     is_empty(QStore),
-    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
+    prolog((write('there 3'), nl)),
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
+    prolog((write('there 4'), nl)),.
 
 is_not_gap(none) if true.
 is_gap(np) if true.
