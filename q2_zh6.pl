@@ -130,7 +130,7 @@ dou rule
 
 s rule
     (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
-    cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), gap:None,, sem:NP_subj_sem, NP),
+    cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), gap:None, sem:NP_subj_sem, NP),
     sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat: [(np, sem:NP_subj_sem)]),
     goal> apply_normalize_and_retrieve(NP, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
 
