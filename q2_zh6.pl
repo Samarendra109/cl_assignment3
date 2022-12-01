@@ -135,10 +135,11 @@ s rule
     goal> apply_normalize_and_retrieve(NP, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
 
 s_gap rule
-    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
-    cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, NP_Obj),
-    cat> (np, logic:NP_Sub_logic, qstore: e_list, agr:(forall, Forall), gap:None, NP),
-    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, VP),
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
+    cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, sem: NP_obj_sem, NP_Obj),
+    cat> (np, logic:NP_Sub_logic, qstore: e_list, agr:(forall, Forall), gap:None, sem:NP_subj_sem, NP),
+    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, 
+                    subcat:[(np, sem:NP_subj_sem), (np, sem:NP_obj_sem)], VP),
     goal> resolve_gap_and_normalize(NP, NP_Sub_logic, VP, NP_Obj, S_logic, S_qstore).
 
 % The empty category

@@ -97,7 +97,7 @@ vp rule
     goal> check_gap_and_normalize(V_logic, NP, VP_logic).
 
 s rule
-    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
     cat> (np, logic:NP_logic, qstore: e_list, gap:None, sem:NP_subj_sem),
     sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, gap:None, subcat: [(np, sem:NP_subj_sem)]),
     goal> apply_normalize_and_retrieve(
@@ -105,7 +105,7 @@ s rule
     ).
 
 s_gap rule
-    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
     cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, sem: NP_obj_sem, NP_Obj),
     cat> (np, logic:NP_Sub_logic, qstore: e_list, gap:None, sem: NP_subj_sem),
     sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, gap:Gap, 
