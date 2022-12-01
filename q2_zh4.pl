@@ -175,7 +175,7 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     prolog((write('here 1'), nl)),
-    prolog(pp_fs(NP1)),
+    prolog((write(pp_fs(NP1)),nl)),
     prolog(pp_fs(NP2)),
     is_ambiguous(NP1, NP2),
     prolog((write('here 2'), nl)),
