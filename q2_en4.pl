@@ -136,9 +136,8 @@ apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) i
 is_not_gap(none) if true.
 is_gap(np) if true.
 
-check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
-    is_not_gap(Gap),
-    beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
+check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), @apply(V_logic, [NP_logic])) if
+    is_not_gap(Gap).
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
     is_gap(Gap).
