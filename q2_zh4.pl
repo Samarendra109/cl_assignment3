@@ -175,8 +175,8 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     prolog((write('here 1'), nl)),
-    prolog((write(pp_fs(NP1)),nl)),
-    prolog(pp_fs(NP2)),
+    prolog((write(NP1),nl)),
+    prolog((write(NP2),nl)),
     is_ambiguous(NP1, NP2),
     prolog((write('here 2'), nl)),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
@@ -188,8 +188,8 @@ apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, 
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
     prolog((write('there 1'), nl)),
-    prolog(pp_fs(NP1)),
-    prolog(pp_fs(NP2)),
+    prolog((write(NP1),nl)),
+    prolog((write(NP2),nl)),
     is_not_ambiguous(NP1, NP2),
     prolog((write('there 2'), nl)),
     is_empty(QStore),
