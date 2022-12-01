@@ -152,6 +152,7 @@ exists(X, Restr, Body) macro (exists, bind:X, body:(and, lhs:Restr, rhs:Body)).
 apply(F, Args) macro (app, f:F, args:Args).
 
 % extra helper goals
+
 apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
