@@ -202,8 +202,8 @@ resolve_gap_and_normalize(
     ) if
     is_gap(Gap),
     beta_normalize(@apply(VP_logic, [NP_Obj_logic]), VP_Obj_logic),
-    apply_normalize_and_retrieve(NP_obj, [NP], NP_Sub_logic, VP_Obj_logic, NP_Obj_qstore, S_logic, S_qstore).
-
+    beta_normalize(@apply(NP_Sub_logic, [VP_Obj_logic]), Norm_logic),
+    retrieve(NP_Obj_qstore, Norm_logic, S_qstore, S_logic).
 
 % Helper goals
 append([],Xs,Xs) if true.
