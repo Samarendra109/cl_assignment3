@@ -172,7 +172,7 @@ is_ambiguous((np, agr:NP1_agr), (vp, qstore:[(qs, l:body:NP2_agr)])) if
     bn_quant(NP2_agr, exists),
     prolog((write('Ambi Check2 done'), nl)).
 
-is_not_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(np, logic:body:NP2_agr)]))) if
+is_not_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(body:NP2_agr)]))) if
     (prolog((write('Not Ambi Check1 step1'), nl)),
     bn_quant(NP1_agr, exists));
     (prolog((write('Not Ambi Check1 step2'), nl)),
@@ -182,11 +182,15 @@ is_not_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(np
     prolog((write('Not Ambi Check1 done'), nl)).
 
 apply_normalize_and_retrieve(NP1, [NP2], VP, LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    prolog((write('Ambi Check0 step0'), nl)),
+    prolog(pp_fs(VP)),
     is_ambiguous(NP1, VP),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
 apply_normalize_and_retrieve(NP1, [NP2], VP, LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
+    prolog((write('Not Ambi Check0 step0'), nl)),
+    prolog(pp_fs(VP)),
     is_not_ambiguous(NP1, VP),
     is_empty(QStore),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
