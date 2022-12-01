@@ -104,7 +104,7 @@ huishuo ---> (v,
                         @lambda(X, @apply(Speak, [Z, X]))
                     ]))),
     qstore:[],
-    subcat:[(np, sem:language), (np, sem:hacker)], % the subcat list should not be empty
+    subcat:[], % the subcat list should not be empty
     sem:(speak, Speak)).
 
 % Phrase structure rules (incomplete)
@@ -118,10 +118,10 @@ np rule
     ).
 
 vp rule
-    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, agr:exists, subcat: VP_subcat, gap:Gap) ===>
-    sem_head> (v, sem:V_sem, logic:V_logic, subcat:V_subcat),
-    cat> (np, logic:NP_logic, qstore: NP_qstore, gap:Gap, sem:NP_obj_sem, NP),
-    goal> check_gap_and_normalize(V_logic, NP, V_subcat, VP_logic, VP_subcat).
+    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, agr:exists, subcat: [NP], gap:Gap) ===>
+    sem_head> (v, sem:V_sem, logic:V_logic),
+    cat> (np, logic:NP_logic, qstore: NP_qstore, gap:Gap, NP),
+    goal> check_gap_and_normalize(V_logic, NP, VP_logic).
 
 dou rule
     (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:forall, subcat: VP_subcat) ===>
@@ -129,17 +129,16 @@ dou rule
     sem_head> (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:exists, subcat: VP_subcat).
 
 s rule
-    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
-    cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), gap:None, sem:NP_subj_sem, NP),
-    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat: [(np, sem:NP_subj_sem)]),
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
+    cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), gap:None, NP),
+    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat:VP_subcat),
     goal> apply_normalize_and_retrieve(NP, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
 
 s_gap rule
-    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
-    cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, sem: NP_obj_sem, NP_Obj),
-    cat> (np, logic:NP_Sub_logic, qstore: e_list, agr:(forall, Forall), gap:None, sem:NP_subj_sem, NP),
-    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, 
-                    subcat:[(np, sem:NP_obj_sem), (np, sem:NP_subj_sem)], VP),
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
+    cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, NP_Obj),
+    cat> (np, logic:NP_Sub_logic, qstore: e_list, agr:(forall, Forall), gap:None, NP),
+    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, VP),
     goal> resolve_gap_and_normalize(NP, NP_Sub_logic, VP, NP_Obj, S_logic, S_qstore).
 
 % The empty category
@@ -174,12 +173,11 @@ apply_normalize_and_retrieve(NP1, LogicFunc, LogicArg, QStore, Norm_logic, QStor
 is_not_gap(none) if true.
 is_gap(np) if true.
 
-check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap, sem:NP_obj_sem), VP_logic, VP_subcat) if
+check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
     is_not_gap(Gap),
-    beta_normalize(@apply(V_logic, [NP_logic]), VP_logic),
-    append(VP_subcat, [(np, sem:NP_obj_sem)], V_subcat).
+    beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
-check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap), V_logic, V_subcat) if
+check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
     is_gap(Gap).
 
 is_not_empty([_|_]) if true.
