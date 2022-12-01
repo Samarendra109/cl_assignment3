@@ -163,14 +163,14 @@ is_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(np, lo
     is_empty(VP_qstore),
     prolog((write('Ambi Check1 step3'), nl)),
     bn_quant(NP2_agr, exists),
-    prolog((write('Ambi Check1 done'), nl)),.
+    prolog((write('Ambi Check1 done'), nl)).
 
 is_ambiguous((np, agr:NP1_agr), (vp, qstore:[(qs, l:body:NP2_agr)])) if
     prolog((write('Ambi Check2 step1'), nl)),
     bn_quant(NP1_agr, forall),
     prolog((write('Ambi Check2 step2'), nl)),
     bn_quant(NP2_agr, exists),
-    prolog((write('Ambi Check2 done'), nl)),.
+    prolog((write('Ambi Check2 done'), nl)).
 
 is_not_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(np, logic:body:NP2_agr)]))) if
     (prolog((write('Not Ambi Check1 step1'), nl)),
