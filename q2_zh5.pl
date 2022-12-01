@@ -131,8 +131,8 @@ dou rule
 s rule
     (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
     cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), gap:None, NP),
-    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat:VP_subcat, VP),
-    goal> apply_normalize_and_retrieve(NP, VP_subcat, VP, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
+    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat:VP_subcat),
+    goal> apply_normalize_and_retrieve(NP, VP_subcat, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
 
 s_gap rule
     (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
@@ -156,50 +156,38 @@ apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
-is_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(body:NP2_agr)]))) if
-    prolog((write('Ambi Check1 step1'), nl)),
+is_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
     bn_quant(NP1_agr, forall),
-    prolog((write('Ambi Check1 step2'), nl)),
-    is_empty(VP_qstore),
-    prolog((write('Ambi Check1 step3'), nl)),
-    bn_quant(NP2_agr, exists),
-    prolog((write('Ambi Check1 done'), nl)).
+    bn_quant(NP2_agr, exists).
 
-is_ambiguous((np, agr:NP1_agr), (vp, qstore:[(qs, l:body:NP2_agr)])) if
-    prolog((write('Ambi Check2 step1'), nl)),
+is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
     bn_quant(NP1_agr, forall),
-    prolog((write('Ambi Check2 step2'), nl)),
-    bn_quant(NP2_agr, exists),
-    prolog((write('Ambi Check2 done'), nl)).
+    bn_quant(NP2_agr, forall).
 
-is_not_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(body:NP2_agr)]))) if
-    (prolog((write('Not Ambi Check1 step1'), nl)),
-    bn_quant(NP1_agr, exists));
-    (prolog((write('Not Ambi Check1 step2'), nl)),
-    is_not_empty(VP_qstore));
-    (prolog((write('Not Ambi Check1 step3'), nl)),
-    bn_quant(NP2_agr, forall)),
-    prolog((write('Not Ambi Check1 done'), nl)).
+is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
+    bn_quant(NP1_agr, exists),
+    bn_quant(NP2_agr, exists).
 
-apply_normalize_and_retrieve(NP1, [NP2], VP, LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
-    prolog((write('Ambi Check0 step0'), nl)),
-    prolog(pp_fs(VP)),
-    is_ambiguous(NP1, VP),
+is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
+    bn_quant(NP1_agr, exists),
+    bn_quant(NP2_agr, forall).
+
+apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
+    is_ambiguous(NP1, NP2),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
-apply_normalize_and_retrieve(NP1, [NP2], VP, LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
-    prolog((write('Not Ambi Check0 step0'), nl)),
-    prolog(pp_fs(VP)),
-    is_not_ambiguous(NP1, VP),
+apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
+    is_not_ambiguous(NP1, NP2),
     is_empty(QStore),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
 
 is_not_gap(none) if true.
 is_gap(np) if true.
 
-check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), @apply(V_logic, [NP_logic])) if
-    is_not_gap(Gap).
+check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
+    is_not_gap(Gap),
+    beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
     is_gap(Gap).
