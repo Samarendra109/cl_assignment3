@@ -126,7 +126,7 @@ vp rule
 dou rule
     (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:forall) ===>
     cat> (dou),
-    sem_head> (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore).
+    sem_head> (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:exists).
 
 s rule
     (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
