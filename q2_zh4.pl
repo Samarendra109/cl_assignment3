@@ -193,6 +193,8 @@ check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
 check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
     is_gap(Gap).
 
+is_not_empty([_|_]) if true.
+
 resolve_gap_and_normalize(
         NP,
         NP_Sub_logic, 
@@ -203,6 +205,7 @@ resolve_gap_and_normalize(
     is_gap(Gap),
     beta_normalize(@apply(VP_logic, [NP_Obj_logic]), VP_Obj_logic),
     beta_normalize(@apply(NP_Sub_logic, [VP_Obj_logic]), Norm_logic),
+    is_not_empty(NP_Obj_qstore),
     retrieve(NP_Obj_qstore, Norm_logic, S_qstore, S_logic).
 
 % Helper goals
