@@ -124,9 +124,9 @@ vp rule
     goal> check_gap_and_normalize(V_logic, NP, VP_logic).
 
 dou rule
-    (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:forall) ===>
+    (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:forall, subcat: VP_subcat) ===>
     cat> (dou),
-    sem_head> (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:exists).
+    sem_head> (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:exists, subcat: VP_subcat).
 
 s rule
     (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
@@ -152,7 +152,6 @@ exists(X, Restr, Body) macro (exists, bind:X, body:(and, lhs:Restr, rhs:Body)).
 apply(F, Args) macro (app, f:F, args:Args).
 
 % extra helper goals
-
 apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
@@ -174,28 +173,15 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
     bn_quant(NP2_agr, forall).
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
-    prolog((write('here 1'), nl)),
-    prolog((write(NP1),nl)),
-    prolog((write(NP2),nl)),
     is_ambiguous(NP1, NP2),
-    prolog((write('here 2'), nl)),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
-    prolog((write('here 3'), nl)),
     is_not_empty(QStore),
-    prolog((write('here 4'), nl)),
-    retrieve(QStore, Norm_logic, NewQStore, NewLogic),
-    prolog((write('here 5'), nl)).
+    retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
-    prolog((write('there 1'), nl)),
-    prolog((write(NP1),nl)),
-    prolog((write(NP2),nl)),
     is_not_ambiguous(NP1, NP2),
-    prolog((write('there 2'), nl)),
     is_empty(QStore),
-    prolog((write('there 3'), nl)),
-    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
-    prolog((write('there 4'), nl)).
+    beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic).
 
 is_not_gap(none) if true.
 is_gap(np) if true.
