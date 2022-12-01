@@ -191,7 +191,7 @@ apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic
     is_empty(QStore),
     prolog((write('there 3'), nl)),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
-    prolog((write('there 4'), nl)),.
+    prolog((write('there 4'), nl)).
 
 is_not_gap(none) if true.
 is_gap(np) if true.
