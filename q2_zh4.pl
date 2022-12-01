@@ -109,36 +109,36 @@ huishuo ---> (v,
 
 % Phrase structure rules (incomplete)
 np rule
-    (np, logic:NP_logic, qstore:NP_qstore, agr:(quant, Q_agr), gap:none) ===>
+    (np, sem:N_sem, logic:NP_logic, qstore:NP_qstore, agr:(quant, Q_agr), gap:none) ===>
     cat> (q, logic:Q_logic, agr:Q_agr),
     cat> (cl, agr:(cl_agr, CL_agr)),
-    sem_head> (n, logic:N_logic, qstore:N_qstore, agr:CL_agr),
+    sem_head> (n, sem:N_sem, logic:N_logic, qstore:N_qstore, agr:CL_agr),
     goal> apply_normalize_and_qaction(
         Q_logic, N_logic, N_qstore, NP_logic, NP_qstore
     ).
 
 vp rule
-    (vp, logic: VP_logic, qstore: NP_qstore, agr:exists, subcat: [NP], gap:Gap) ===>
-    sem_head> (v, logic:V_logic),
+    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, agr:exists, subcat: [NP], gap:Gap) ===>
+    sem_head> (v, sem:V_sem, logic:V_logic),
     cat> (np, logic:NP_logic, qstore: NP_qstore, gap:Gap, NP),
     goal> check_gap_and_normalize(V_logic, NP, VP_logic).
 
 dou rule
-    (vp, logic: VP_logic, qstore: VP_qstore, agr:forall) ===>
+    (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore, agr:forall) ===>
     cat> (dou),
-    sem_head> (vp, logic: VP_logic, qstore: VP_qstore).
+    sem_head> (vp, sem:VP_sem, logic: VP_logic, qstore: VP_qstore).
 
 s rule
-    (s, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
     cat> (np, logic:NP_logic, qstore: e_list, agr:(quant, NP_agr), gap:None, NP),
-    sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat:VP_subcat),
+    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:NP_agr, gap:None, subcat:VP_subcat),
     goal> apply_normalize_and_retrieve(NP, VP_subcat, NP_logic, VP_logic, VP_qstore, S_logic, S_qstore).
 
 s_gap rule
-    (s, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
+    (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None)) ===>
     cat> (np, logic:NP_Obj_logic, qstore: NP_Obj_qstore, gap:None, NP_Obj),
     cat> (np, logic:NP_Sub_logic, qstore: e_list, agr:(forall, Forall), gap:None, NP),
-    sem_head> (vp, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, VP),
+    sem_head> (vp, sem:VP_sem, logic:VP_logic, qstore: VP_qstore, agr:Forall, gap:Gap, VP),
     goal> resolve_gap_and_normalize(NP, NP_Sub_logic, VP, NP_Obj, S_logic, S_qstore).
 
 % The empty category
