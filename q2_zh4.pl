@@ -175,7 +175,7 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     is_ambiguous(NP1, NP2),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
-    is_not_empty(QStore),
+    %is_not_empty(QStore),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
 
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, Norm_logic, QStore) if
