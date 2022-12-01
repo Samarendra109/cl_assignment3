@@ -179,7 +179,7 @@ is_not_ambiguous((np, agr:NP1_agr), (np, agr:NP2_agr)) if
 apply_normalize_and_retrieve(NP1, [NP2], LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     %prolog(pp_fs(LogicArg)),
     %prolog(pp_fs(QStore)),
-    is_not_empty(QStore)
+    is_not_empty(QStore),
     is_ambiguous(NP1, QStore),
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     retrieve(QStore, Norm_logic, NewQStore, NewLogic).
