@@ -145,7 +145,6 @@ s_gap rule
 empty (np, sem:Sem, logic:Logic, qstore:QStore, agr:Agr,
     gap:(sem:Sem, logic:Logic, qstore:QStore, agr:Agr, gap:none)).
 
-
 % Macros
 lambda(X, Body) macro (lambda, bind:X, body:Body).
 forall(X, Restr, Body) macro (forall, bind:X, body:(imply, lhs:Restr, rhs:Body)).
