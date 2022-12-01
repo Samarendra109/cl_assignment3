@@ -196,5 +196,5 @@ sem1(sem:S, S) if true.
 % You should write more
 prect_test :- prec([a,hacker,speaks,every,language]).
 translate_test :- translate([a,hacker,speaks,every,language]).
-gen1_test :- gen((s, sem:speak, logic: @forall(X, @apply(language, [X]), @exists(Y, @apply(hacker, [Y]), @apply(speak, [Y|[X]])))))
-gen2_test :- gen((s, sem:speak, logic: @forall(X, @apply(hacker, [X]), @exists(Y, @apply(language, [Y]), @apply(speak, [X|[Y]])))))
+gen1_test :- gen((s, sem:speak, logic: @forall(X, @apply(language, [X]), @exists(Y, @apply(hacker, [Y]), @apply(speak, [Y|[X]]))))).
+gen2_test :- gen((s, sem:speak, logic: @forall(X, @apply(hacker, [X]), @exists(Y, @apply(language, [Y]), @apply(speak, [X|[Y]]))))).
