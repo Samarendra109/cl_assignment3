@@ -91,10 +91,10 @@ np rule
     ).
 
 vp rule
-    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, gap:Gap, subcat: [NP_subj]) ===>
-    sem_head> (v, sem:V_sem, logic:V_logic, subcat: [(np, sem:NP_obj_sem), NP_subj]),
+    (vp, sem:V_sem, logic: VP_logic, qstore: NP_qstore, gap:Gap, subcat: VP_subcat) ===>
+    sem_head> (v, sem:V_sem, logic:V_logic, subcat: V_subcat),
     cat> (np, logic:NP_logic, qstore: NP_qstore, gap:Gap, sem:NP_obj_sem, NP),
-    goal> check_gap_and_normalize(V_logic, NP, VP_logic).
+    goal> check_gap_and_normalize(V_logic, V_subcat, NP, VP_logic, VP_subcat).
 
 s rule
     (s, sem:VP_sem, logic: S_logic, qstore: S_qstore, gap:(none, None), subcat:[]) ===>
@@ -135,11 +135,13 @@ apply_normalize_and_retrieve(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) i
 is_not_gap(none) if true.
 is_gap(np) if true.
 
-check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), VP_logic) if
+check_gap_and_normalize(
+    V_logic, [(np, sem:NP_obj_sem), NP_subj], (np, logic: NP_logic, gap:Gap, sem:NP_obj_sem), VP_logic, [NP_subj]
+    ) if
     is_not_gap(Gap),
     beta_normalize(@apply(V_logic, [NP_logic]), VP_logic).
 
-check_gap_and_normalize(V_logic, (np, logic: NP_logic, gap:Gap), V_logic) if
+check_gap_and_normalize(V_logic, V_subcat, (np, logic: NP_logic, gap:Gap), V_logic, V_subcat) if
     is_gap(Gap).
 
 resolve_gap_and_normalize(
