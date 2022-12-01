@@ -156,7 +156,7 @@ apply_normalize_and_qaction(LogicFunc, LogicArg, QStore, NewLogic, NewQStore) if
     beta_normalize(@apply(LogicFunc, [LogicArg]), Norm_logic),
     qaction(Norm_logic, QStore, NewLogic, NewQStore).
 
-is_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(np, logic:body:NP2_agr)]))) if
+is_ambiguous((np, agr:NP1_agr), (vp, qstore:VP_qstore, logic:(app, args:[(body:NP2_agr)]))) if
     prolog((write('Ambi Check1 step1'), nl)),
     bn_quant(NP1_agr, forall),
     prolog((write('Ambi Check1 step2'), nl)),
