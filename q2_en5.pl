@@ -201,45 +201,45 @@ translate_test :- translate([a,hacker,speaks,every,language]).
 gen1_test :- gen((s, sem:speak, logic: @forall(X, @apply(language, [X]), @exists(Y, @apply(hacker, [Y]), @apply(speak, [Y|[X]]))))).
 gen2_test :- gen((s, sem:speak, logic: @forall(X, @apply(hacker, [X]), @exists(Y, @apply(language, [Y]), @apply(speak, [X|[Y]]))))).
 
-p1 :- prec([a,language,speaks,a,language]), prolog((write('\n'),nl))
-p2 :- prec([a,language,speaks,a,hacker]), prolog((write('\n'),nl))
-p3 :- prec([a,hacker,speaks,a,language]), prolog((write('\n'),nl))
-p4 :- prec([a,hacker,speaks,a,hacker]), prolog((write('\n'),nl))
+p1 :- prec([a,language,speaks,a,language]), prolog((write('\n'),nl)).
+p2 :- prec([a,language,speaks,a,hacker]), prolog((write('\n'),nl)).
+p3 :- prec([a,hacker,speaks,a,language]), prolog((write('\n'),nl)).
+p4 :- prec([a,hacker,speaks,a,hacker]), prolog((write('\n'),nl)).
 
-p5 :- prec([every,language,speaks,a,language]), prolog((write('\n'),nl))
-p6 :- prec([every,language,speaks,a,hacker]), prolog((write('\n'),nl))
-p7 :- prec([every,hacker,speaks,a,language]), prolog((write('\n'),nl))
-p8 :- prec([every,hacker,speaks,a,hacker]), prolog((write('\n'),nl))
+p5 :- prec([every,language,speaks,a,language]), prolog((write('\n'),nl)).
+p6 :- prec([every,language,speaks,a,hacker]), prolog((write('\n'),nl)).
+p7 :- prec([every,hacker,speaks,a,language]), prolog((write('\n'),nl)).
+p8 :- prec([every,hacker,speaks,a,hacker]), prolog((write('\n'),nl)).
 
-p9 :- prec([every,language,speaks,every,language]), prolog((write('\n'),nl))
-pA :- prec([every,language,speaks,every,hacker]), prolog((write('\n'),nl))
-pB :- prec([every,hacker,speaks,every,language]), prolog((write('\n'),nl))
-pC :- prec([every,hacker,speaks,every,hacker]), prolog((write('\n'),nl))
+p9 :- prec([every,language,speaks,every,language]), prolog((write('\n'),nl)).
+pA :- prec([every,language,speaks,every,hacker]), prolog((write('\n'),nl)).
+pB :- prec([every,hacker,speaks,every,language]), prolog((write('\n'),nl)).
+pC :- prec([every,hacker,speaks,every,hacker]), prolog((write('\n'),nl)).
 
-pD :- prec([a,language,speaks,every,language]), prolog((write('\n'),nl))
-pE :- prec([a,language,speaks,every,hacker]), prolog((write('\n'),nl))
-pF :- prec([a,hacker,speaks,every,language]), prolog((write('\n'),nl))
-pG :- prec([a,hacker,speaks,every,hacker]), prolog((write('\n'),nl))
+pD :- prec([a,language,speaks,every,language]), prolog((write('\n'),nl)).
+pE :- prec([a,language,speaks,every,hacker]), prolog((write('\n'),nl)).
+pF :- prec([a,hacker,speaks,every,language]), prolog((write('\n'),nl)).
+pG :- prec([a,hacker,speaks,every,hacker]), prolog((write('\n'),nl)).
 
-q1 :- prec([a,language,a,language,speaks]), prolog((write('\n'),nl))
-q2 :- prec([a,hacker,a,language,speaks]), prolog((write('\n'),nl))
-q3 :- prec([a,language,a,hacker,speaks]), prolog((write('\n'),nl))
-q4 :- prec([a,hacker,a,hacker,speaks]), prolog((write('\n'),nl))
+q1 :- prec([a,language,a,language,speaks]), prolog((write('\n'),nl)).
+q2 :- prec([a,hacker,a,language,speaks]), prolog((write('\n'),nl)).
+q3 :- prec([a,language,a,hacker,speaks]), prolog((write('\n'),nl)).
+q4 :- prec([a,hacker,a,hacker,speaks]), prolog((write('\n'),nl)).
 
-q5 :- prec([a,language,every,language,speaks]), prolog((write('\n'),nl))
-q6 :- prec([a,hacker,every,language,speaks]), prolog((write('\n'),nl))
-q7 :- prec([a,language,every,hacker,speaks]), prolog((write('\n'),nl))
-q8 :- prec([a,hacker,every,hacker,speaks]), prolog((write('\n'),nl))
+q5 :- prec([a,language,every,language,speaks]), prolog((write('\n'),nl)).
+q6 :- prec([a,hacker,every,language,speaks]), prolog((write('\n'),nl)).
+q7 :- prec([a,language,every,hacker,speaks]), prolog((write('\n'),nl)).
+q8 :- prec([a,hacker,every,hacker,speaks]), prolog((write('\n'),nl)).
 
-q9 :- prec([every,language,every,language,speaks]), prolog((write('\n'),nl))
-qA :- prec([every,hacker,every,language,speaks]), prolog((write('\n'),nl))
-qB :- prec([every,language,every,hacker,speaks]), prolog((write('\n'),nl))
-qC :- prec([every,hacker,every,hacker,speaks]), prolog((write('\n'),nl))
+q9 :- prec([every,language,every,language,speaks]), prolog((write('\n'),nl)).
+qA :- prec([every,hacker,every,language,speaks]), prolog((write('\n'),nl)).
+qB :- prec([every,language,every,hacker,speaks]), prolog((write('\n'),nl)).
+qC :- prec([every,hacker,every,hacker,speaks]), prolog((write('\n'),nl)).
 
-qD :- prec([every,language,a,language,speaks]), prolog((write('\n'),nl))
-qE :- prec([every,language,a,language,speaks]), prolog((write('\n'),nl))
-qF :- prec([every,language,a,hacker,speaks]), prolog((write('\n'),nl))
-qG :- prec([every,hacker,a,hacker,speaks]), prolog((write('\n'),nl))
+qD :- prec([every,language,a,language,speaks]), prolog((write('\n'),nl)).
+qE :- prec([every,language,a,language,speaks]), prolog((write('\n'),nl)).
+qF :- prec([every,language,a,hacker,speaks]), prolog((write('\n'),nl)).
+qG :- prec([every,hacker,a,hacker,speaks]), prolog((write('\n'),nl)).
 
 all_test :- tell('my_output.txt'),
 p1,p2,p3,p4,p5,p6,p7,p8,p9,pA,pB,pC,pD,pE,pF,pG,q1,q2,q3,q4,q5,q6,q7,q8,q9,qA,qB,qC,qD,qE,qF,qG,
