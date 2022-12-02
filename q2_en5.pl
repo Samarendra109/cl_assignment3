@@ -243,4 +243,4 @@ qG :- (prec([every,hacker,a,hacker,speaks]); true), (write('\n'),nl).
 
 all_test :- tell('my_output.txt'),
 p1,p2,p3,p4,p5,p6,p7,p8,p9,pA,pB,pC,pD,pE,pF,pG,q1,q2,q3,q4,q5,q6,q7,q8,q9,qA,qB,qC,qD,qE,qF,qG,
-told('my_output.txt').
+told.
