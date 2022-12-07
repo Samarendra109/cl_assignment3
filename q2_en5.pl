@@ -201,46 +201,39 @@ translate_test :- translate([a,hacker,speaks,every,language]).
 gen1_test :- gen((s, sem:speak, logic: @forall(X, @apply(language, [X]), @exists(Y, @apply(hacker, [Y]), @apply(speak, [Y|[X]]))))).
 gen2_test :- gen((s, sem:speak, logic: @forall(X, @apply(hacker, [X]), @exists(Y, @apply(language, [Y]), @apply(speak, [X|[Y]]))))).
 
-p1 :- (prec([a,language,speaks,a,language]); write('failed')), (write('\n'),nl).
-p2 :- (prec([a,language,speaks,a,hacker]); write('failed')), (write('\n'),nl).
-p3 :- (prec([a,hacker,speaks,a,language]); write('failed')), (write('\n'),nl).
-p4 :- (prec([a,hacker,speaks,a,hacker]); write('failed')), (write('\n'),nl).
+p0 :- (prec([every, hacker, speaks, every, hacker]); write('failed')), (write('\n'),nl). 
+p1 :- (prec([every, hacker, every, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p2 :- (prec([every, hacker, speaks, every, language]); write('failed')), (write('\n'),nl). 
+p3 :- (prec([every, language, every, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p4 :- (prec([every, hacker, speaks, a, hacker]); write('failed')), (write('\n'),nl). 
+p5 :- (prec([a, hacker, every, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p6 :- (prec([every, hacker, speaks, a, language]); write('failed')), (write('\n'),nl). 
+p7 :- (prec([a, language, every, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p8 :- (prec([every, language, speaks, every, hacker]); write('failed')), (write('\n'),nl). 
+p9 :- (prec([every, hacker, every, language, speaks]); write('failed')), (write('\n'),nl). 
+p10 :- (prec([every, language, speaks, every, language]); write('failed')), (write('\n'),nl). 
+p11 :- (prec([every, language, every, language, speaks]); write('failed')), (write('\n'),nl). 
+p12 :- (prec([every, language, speaks, a, hacker]); write('failed')), (write('\n'),nl). 
+p13 :- (prec([a, hacker, every, language, speaks]); write('failed')), (write('\n'),nl). 
+p14 :- (prec([every, language, speaks, a, language]); write('failed')), (write('\n'),nl). 
+p15 :- (prec([a, language, every, language, speaks]); write('failed')), (write('\n'),nl). 
+p16 :- (prec([a, hacker, speaks, every, hacker]); write('failed')), (write('\n'),nl). 
+p17 :- (prec([every, hacker, a, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p18 :- (prec([a, hacker, speaks, every, language]); write('failed')), (write('\n'),nl). 
+p19 :- (prec([every, language, a, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p20 :- (prec([a, hacker, speaks, a, hacker]); write('failed')), (write('\n'),nl). 
+p21 :- (prec([a, hacker, a, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p22 :- (prec([a, hacker, speaks, a, language]); write('failed')), (write('\n'),nl). 
+p23 :- (prec([a, language, a, hacker, speaks]); write('failed')), (write('\n'),nl). 
+p24 :- (prec([a, language, speaks, every, hacker]); write('failed')), (write('\n'),nl). 
+p25 :- (prec([every, hacker, a, language, speaks]); write('failed')), (write('\n'),nl). 
+p26 :- (prec([a, language, speaks, every, language]); write('failed')), (write('\n'),nl). 
+p27 :- (prec([every, language, a, language, speaks]); write('failed')), (write('\n'),nl). 
+p28 :- (prec([a, language, speaks, a, hacker]); write('failed')), (write('\n'),nl). 
+p29 :- (prec([a, hacker, a, language, speaks]); write('failed')), (write('\n'),nl). 
+p30 :- (prec([a, language, speaks, a, language]); write('failed')), (write('\n'),nl). 
+p31 :- (prec([a, language, a, language, speaks]); write('failed')), (write('\n'),nl). 
 
-p5 :- (prec([every,language,speaks,a,language]); write('failed')), (write('\n'),nl).
-p6 :- (prec([every,language,speaks,a,hacker]); write('failed')), (write('\n'),nl).
-p7 :- (prec([every,hacker,speaks,a,language]); write('failed')), (write('\n'),nl).
-p8 :- (prec([every,hacker,speaks,a,hacker]); write('failed')), (write('\n'),nl).
-
-p9 :- (prec([every,language,speaks,every,language]); write('failed')), (write('\n'),nl).
-pA :- (prec([every,language,speaks,every,hacker]); write('failed')), (write('\n'),nl).
-pB :- (prec([every,hacker,speaks,every,language]); write('failed')), (write('\n'),nl).
-pC :- (prec([every,hacker,speaks,every,hacker]); write('failed')), (write('\n'),nl).
-
-pD :- (prec([a,language,speaks,every,language]); write('failed')), (write('\n'),nl).
-pE :- (prec([a,language,speaks,every,hacker]); write('failed')), (write('\n'),nl).
-pF :- (prec([a,hacker,speaks,every,language]); write('failed')), (write('\n'),nl).
-pG :- (prec([a,hacker,speaks,every,hacker]); write('failed')), (write('\n'),nl).
-
-q1 :- (prec([a,language,a,language,speaks]); write('failed')), (write('\n'),nl).
-q2 :- (prec([a,hacker,a,language,speaks]); write('failed')), (write('\n'),nl).
-q3 :- (prec([a,language,a,hacker,speaks]); write('failed')), (write('\n'),nl).
-q4 :- (prec([a,hacker,a,hacker,speaks]); write('failed')), (write('\n'),nl).
-
-q5 :- (prec([a,language,every,language,speaks]); write('failed')), (write('\n'),nl).
-q6 :- (prec([a,hacker,every,language,speaks]); write('failed')), (write('\n'),nl).
-q7 :- (prec([a,language,every,hacker,speaks]); write('failed')), (write('\n'),nl).
-q8 :- (prec([a,hacker,every,hacker,speaks]); write('failed')), (write('\n'),nl).
-
-q9 :- (prec([every,language,every,language,speaks]); write('failed')), (write('\n'),nl).
-qA :- (prec([every,hacker,every,language,speaks]); write('failed')), (write('\n'),nl).
-qB :- (prec([every,language,every,hacker,speaks]); write('failed')), (write('\n'),nl).
-qC :- (prec([every,hacker,every,hacker,speaks]); write('failed')), (write('\n'),nl).
-
-qD :- (prec([every,language,a,language,speaks]); write('failed')), (write('\n'),nl).
-qE :- (prec([every,language,a,language,speaks]); write('failed')), (write('\n'),nl).
-qF :- (prec([every,language,a,hacker,speaks]); write('failed')), (write('\n'),nl).
-qG :- (prec([every,hacker,a,hacker,speaks]); write('failed')), (write('\n'),nl).
-
-all_test :- tell('my_output.txt'),
-p1,p2,p3,p4,p5,p6,p7,p8,p9,pA,pB,pC,pD,pE,pF,pG,q1,q2,q3,q4,q5,q6,q7,q8,q9,qA,qB,qC,qD,qE,qF,qG,
+all_test :- tell('my_output_en.txt'),
+p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p25,p26,p27,p28,p29,p30,p31,
 told.
